@@ -11,6 +11,7 @@ import useToken from './components/useToken';
 import styled, { css } from 'styled-components/macro'
 import Button from './components/Button';
 import LogOutButton from './components/LogOutButton';
+import home from './components/image/home.svg';
 
 const Intro = styled.div`
   margin-top: 1em;
@@ -21,12 +22,18 @@ const LogOut = styled.div`
   text-align: right;
 `;
 
-const btnCSS = css`
-    
-`;
+/* const btnCSS = css`
+@media only screen and (max-width: 600px) {
+  body {
+    margin-top: 10em;
+  }
+}
+`; */
 
 const App = () => {
   const { token, setToken } = useToken();
+
+  const buttons = ['Homepage', 'Parking', 'Restaurant', 'Menu'];
 
   //if(!token) {
   //  return <Login setToken={setToken} />
@@ -34,29 +41,32 @@ const App = () => {
 
   return (
     <div>
+
           <LogOut>
             <LogOutButton onClick={() => {
               localStorage.clear();
               window.location.reload();
-              }} css={btnCSS}>Logout</LogOutButton>
+              }}>Logout</LogOutButton>
     </LogOut>
+
     <Intro>
           <Router>
-            <nav>
+            <nav className='navbar'>
               <Link to="/">
-                  <Button css={btnCSS}> Homepage </Button>
+                  <button className='btn-home'> {buttons[0]} </button>
+                  <button className='btn-home-mobile'></button>
               </Link>
-
               <Link to="/parking">
-                  <Button css={btnCSS}> Parking </Button>
+                  <button className='btn-parking'> {buttons[1]} </button>
+                  <button className='btn-parking-mobile'></button>
               </Link>
-
               <Link to="/restaurant">
-                  <Button css={btnCSS}> Restaurant </Button>
+                  <button className='btn-restaurant'> {buttons[2]} </button>
+                  <button className='btn-restaurant-mobile'></button>
               </Link>
-
               <Link to="/menu">
-                  <Button css={btnCSS}> Menu </Button>
+                  <button className='btn-menu'> {buttons[3]} </button>
+                  <button className='btn-menu-mobile'></button>
               </Link>
             </nav>
             <Routes>
