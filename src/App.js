@@ -11,6 +11,8 @@ import useToken from './components/useToken';
 import styled, { css } from 'styled-components/macro'
 import Button from './components/Button';
 import LogOutButton from './components/LogOutButton';
+import Navbar from './components/Navbar';
+
 
 const Intro = styled.div`
   margin-top: 1em;
@@ -34,6 +36,14 @@ const App = () => {
 */
   return (
     <div>
+      <Router>
+      <Navbar />
+        <Routes>
+          <Route path='/' exact component={Home} />
+          <Route path='/login' component={Login} />
+          <Route path='/restaurant' component={Restaurant} />
+        </Routes>
+      </Router>
           <LogOut>
             <LogOutButton onClick={() => {
               localStorage.clear();
