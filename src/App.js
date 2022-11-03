@@ -12,6 +12,7 @@ import styled, { css } from 'styled-components/macro'
 import Button from './components/Button';
 import LogOutButton from './components/LogOutButton';
 import home from './components/image/home.svg';
+import Navbar from './components/Navbar';
 
 const Intro = styled.div`
   margin-top: 1em;
@@ -41,7 +42,14 @@ const App = () => {
 
   return (
     <div>
-
+      <Router>
+      <Navbar />
+        <Routes>
+          <Route path='/' exact component={Home} />
+          <Route path='/login' component={Login} />
+          <Route path='/restaurant' component={Restaurant} />
+        </Routes>
+      </Router>
           <LogOut>
             <LogOutButton onClick={() => {
               localStorage.clear();
@@ -51,7 +59,7 @@ const App = () => {
 
     <Intro>
           <Router>
-            <nav className='navbar'>
+            <nav className='navbarMenu'>
               <Link to="/">
                   <button className='btn-home'> {buttons[0]} </button>
                   <button className='btn-home-mobile'></button>

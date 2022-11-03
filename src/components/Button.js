@@ -9,8 +9,11 @@ export const Button = styled.button`
     text-decoration: none;
     color: #616A94;
     background-color: #999;
+    transition: 0.3s;
     font-size: 1em;
-    
+    cursor: pointer;
+    outline: none;
+
     &:hover {
         color: white;
         background-color: #616A94;
