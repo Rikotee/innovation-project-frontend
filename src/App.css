@@ -1,38 +1,158 @@
-.App {
-  text-align: center;
+body {
+  background-color: rgb(192, 197, 199);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar {
+  background-color: rgb(217, 197, 197);
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.btn-home {
+  border: 1px solid #616A94;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 5px;
+  text-decoration: none;
+  color: #616A94;
+  background-color: #999;
+  font-size: 1em;
+}
+
+.btn-home-mobile {
+  display: none;
+}
+
+.btn-parking {
+  border: 1px solid #616A94;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 5px;
+  text-decoration: none;
+  color: #616A94;
+  background-color: #999;
+  font-size: 1em;
+}
+
+.btn-parking-mobile {
+  display: none;
+}
+
+.btn-restaurant {
+  border: 1px solid #616A94;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 5px;
+  text-decoration: none;
+  color: #616A94;
+  background-color: #999;
+  font-size: 1em;
+}
+
+.btn-restaurant-mobile {
+  display: none;
+}
+
+.btn-menu {
+  border: 1px solid #616A94;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 5px;
+  text-decoration: none;
+  color: #616A94;
+  background-color: #999;
+  font-size: 1em;
+}
+
+.btn-menu-mobile {
+  display: none;
+}
+
+
+/* bottom navigation */
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: rgb(210, 210, 210);
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  
+  .navbar {
+    background-color: rgb(80, 80, 80);
+    padding: 0.1rem;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-around;
   }
-  to {
-    transform: rotate(360deg);
+
+  .btn-home {
+    display: none;
+  }
+
+  .btn-home-mobile {
+    background-color: rgb(240, 240, 240);
+    border-radius: 50%;
+    padding: 1.8rem;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    background-image: url(./components/image/home.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .btn-parking {
+    display: none;
+  }
+
+  .btn-parking-mobile {
+    background-color: rgb(240, 240, 240);
+    border-radius: 50%;
+    padding: 1.8rem;
+    margin: 1rem;
+    display: flex;
+    justify-content: space-around;
+    background-image: url(./components/image/car.png);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .btn-restaurant {
+    display: none;
+  }
+
+  .btn-restaurant-mobile {
+    background-color: rgb(240, 240, 240);
+    border-radius: 50%;
+    padding: 1.8rem;
+    margin: 1rem;
+    display: flex;
+    justify-content: space-around;
+    background-image: url(./components/image/res.png);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .btn-menu {
+    display: none;
+  }
+
+  .btn-menu-mobile {
+    background-color: rgb(240, 240, 240);
+    border-radius: 50%;
+    padding: 1.8rem;
+    margin: 1rem;
+    display: flex;
+    justify-content: space-around;
+    background-image: url(./components/image/menu.png);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .navbar img{
+    width: 100%;
+    height: 100%;
   }
 }
