@@ -36,9 +36,9 @@ const App = () => {
 
   const buttons = ['Homepage', 'Parking', 'Restaurant', 'Menu'];
 
-/*   if(!token) {
+  if(!token) {
     return <Login setToken={setToken} />
-  }; */
+  };
 
   return (
     <div>
@@ -67,12 +67,13 @@ const App = () => {
               </Link>
 
               <Navbar />
-        <Routes>
-          <Route path="/" exact component={Home} />
-          {/* <Route path='/login' component={Login} /> */}
-          <Route path='/restaurant' component={Restaurant} />
-          <Route path='/feedback' component={Feedback} />
-        </Routes>
+              <Routes>
+                <Route path="/" exact component={Home} />
+
+                <Route path='/restaurant' component={Restaurant} />
+                <Route path='/feedback' component={Feedback} />
+              </Routes>
+              
             </nav>
             <Routes>
               <Route path="/" element={<Home />} />

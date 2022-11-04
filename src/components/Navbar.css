@@ -73,3 +73,22 @@
   span {
     margin-left: 16px;
   }
+
+  
+/* bottom navigation */
+@media only screen and (max-width: 600px) {
+
+  .navbar {
+    background-color: rgb(240, 240, 240);
+    border-radius: 50%;
+    padding: 1.8rem;
+    margin: 1rem;
+
+    width: 80px;
+    height: 80px;
+
+    display: flex;
+    justify-content: center;
+  }
+
+}
