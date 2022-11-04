@@ -7,9 +7,10 @@ const Home = () => {
   return (
 
     <div>
-                <image>
+      <h1>Homepage</h1>
+        <image>
           <img src={home}  alt="Logo" />
-          </image>
+        </image>
     </div>
   );
 };

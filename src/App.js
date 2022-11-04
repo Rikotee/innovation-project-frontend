@@ -35,9 +35,9 @@ const App = () => {
 
   const buttons = ['Homepage', 'Parking', 'Restaurant', 'Menu'];
 
-  //if(!token) {
-  //  return <Login setToken={setToken} />
-  //};
+/*   if(!token) {
+    return <Login setToken={setToken} />
+  }; */
 
   return (
     <div>
@@ -57,6 +57,7 @@ const App = () => {
     </LogOut>
 
     <Intro>
+      
           <Router>
             <nav className='navbarMenu'>
               <Link to="/">
@@ -75,6 +76,19 @@ const App = () => {
                   <button className='btn-menu'> {buttons[3]} </button>
                   <button className='btn-menu-mobile'></button>
               </Link>
+
+
+
+
+
+
+
+
+
+
+
+
+              
             </nav>
             <Routes>
               <Route path="/" element={<Home />} />

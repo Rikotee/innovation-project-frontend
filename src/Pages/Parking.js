@@ -6,8 +6,9 @@ const Parking = () => {
 
     return(
         <div>
+            <h1>Parking</h1>
           <image>
-          <img src={car}  alt="Logo" />
+            <img src={car}  alt="Logo" />
           </image>
         </div>
     )

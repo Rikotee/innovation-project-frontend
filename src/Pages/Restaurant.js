@@ -7,9 +7,10 @@ const Restaurant = () => {
   return (
 
     <div>
-                <image>
-          <img src={res}  alt="Logo" />
-          </image>
+        <h1>Restaurant</h1>
+      <image>
+        <img src={res}  alt="Logo" />
+      </image>
     </div>
   );
 };
