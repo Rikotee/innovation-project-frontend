@@ -6,6 +6,7 @@ import Login from './Pages/Login';
 import Parking from './Pages/Parking';
 import Restaurant from './Pages/Restaurant';
 import Menu from './Pages/Menu';
+import Feedback from './Pages/Feedback';
 import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import useToken from './components/useToken';
 import styled, { css } from 'styled-components/macro'
@@ -41,14 +42,6 @@ const App = () => {
 
   return (
     <div>
-      <Router>
-      <Navbar />
-        <Routes>
-          <Route path="/" exact component={Home} />
-          <Route path='/login' component={Login} />
-          <Route path='/restaurant' component={Restaurant} />
-        </Routes>
-      </Router>
           <LogOut>
             <LogOutButton onClick={() => {
               localStorage.clear();
@@ -72,23 +65,14 @@ const App = () => {
                   <button className='btn-restaurant'> {buttons[2]} </button>
                   <button className='btn-restaurant-mobile'></button>
               </Link>
-              <Link to="/menu">
-                  <button className='btn-menu'> {buttons[3]} </button>
-                  <button className='btn-menu-mobile'></button>
-              </Link>
 
-
-
-
-
-
-
-
-
-
-
-
-              
+              <Navbar />
+        <Routes>
+          <Route path="/" exact component={Home} />
+          {/* <Route path='/login' component={Login} /> */}
+          <Route path='/restaurant' component={Restaurant} />
+          <Route path='/feedback' component={Feedback} />
+        </Routes>
             </nav>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -96,6 +80,7 @@ const App = () => {
               <Route path="/parking" element={<Parking />} />
               <Route path="/restaurant" element={<Restaurant />} />
               <Route path="/menu" element={<Menu />} />
+              <Route path="/feedback" element={<Feedback />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
       </Router>
