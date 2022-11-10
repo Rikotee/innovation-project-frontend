@@ -7,6 +7,7 @@
     position: absolute;
     bottom: 0;
     right: 0;
+    width: fit-content;
   }
   
   .menu-bars {
@@ -78,17 +79,15 @@
 /* bottom navigation */
 @media only screen and (max-width: 600px) {
 
-  .navbar {
-    background-color: rgb(240, 240, 240);
-    border-radius: 50%;
-    padding: 1.8rem;
-    margin: 1rem;
+  
+  .menu-bars {
+    margin-left: 0rem;
+    font-size: 2rem;
+    background: none;
+    position: relative;
+    width: 18rem;
+    margin-right: -430px;
+    margin-bottom: 50px;
 
-    width: 80px;
-    height: 80px;
-
-    display: flex;
-    justify-content: center;
   }
-
 }

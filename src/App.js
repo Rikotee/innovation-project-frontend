@@ -13,6 +13,7 @@ import styled, { css } from 'styled-components/macro'
 import Button from './components/Button';
 import LogOutButton from './components/LogOutButton';
 import Navbar from './components/Navbar';
+import * as FaIcons from 'react-icons/fa';
 
 const Intro = styled.div`
   margin-top: 1em;
@@ -55,7 +56,7 @@ const App = () => {
             <nav className='navbarMenu'>
               <Link to="/">
                   <button className='btn-home'> {buttons[0]} </button>
-                  <button className='btn-home-mobile'></button>
+                  <button className='btn-home-mobile'></button>                  
               </Link>
               <Link to="/parking">
                   <button className='btn-parking'> {buttons[1]} </button>
@@ -65,9 +66,10 @@ const App = () => {
                   <button className='btn-restaurant'> {buttons[2]} </button>
                   <button className='btn-restaurant-mobile'></button>
               </Link>
-              
+              <button className='btn-menu-mobile'></button>
               <Navbar />
               <Routes>
+                
                 <Route path="/" exact component={Home} />
 
                 <Route path='/restaurant' component={Restaurant} />
