@@ -223,6 +223,11 @@ body {
   display: none;
 }
 
+input{
+  width: 75%;
+  height: 5rem;
+  font-size: 1em;
+}
 
 /* bottom navigation */
 @media only screen and (max-width: 600px) {
