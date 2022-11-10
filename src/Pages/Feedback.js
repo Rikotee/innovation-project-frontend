@@ -48,7 +48,7 @@ const Feedback = () => {
 
         <label>
           <p>Please give your email if you want us to contact</p>
-          <input type="text" onChange={e => setEmail(e.target.value)} maxLength={2000}/>
+          <input type="email" onChange={e => setEmail(e.target.value)} maxLength={2000}/>
         </label>
           
         <div>
