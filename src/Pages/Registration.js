@@ -38,6 +38,7 @@ const Registration = () => {
           <input
           id="username"
           type="text"
+          required="required"
           onChange={u => setUserName(u.target.value)} maxLength={20}/>
         </label>
         <label>
@@ -45,6 +46,7 @@ const Registration = () => {
           <input
           id="password"
           type="password"
+          required="required"
           onChange={e => setPassword(e.target.value)} maxLength={20}/>
         </label>
         <div>
