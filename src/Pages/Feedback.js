@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
-import Registration from "./Registration";
 import styled, { css } from 'styled-components/macro'
 import Button from "../components/Button";
 import {toast} from 'react-toastify';
@@ -16,34 +15,42 @@ const btnCSS = css`
     margin-top: 2em;
 `;
 
-const Feedback = ({ setToken }) => {
+const Feedback = () => {
 
-  const [username, setUserName] = useState();
-  const [password, setPassword] = useState();
-  const [show, setShow] = useState(false);
+  const [subject, setSubject] = useState();
+  const [feedbackTxt, setFeedbackTxt] = useState();
+  const [email, setEmail] = useState();
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const token = await loginUser({
-      username,
-      password
+    await sendFeedback({
+      subject,
+      feedbackTxt,
+      email
+
     });
-    setToken(token);
   }
 
   return(
     <Intro>
-    <div className="login-wrapper">
+    <div className="feedback-wrapper">
       <h1>Feedback</h1>
       <form onSubmit={handleSubmit}>
         <label>
           <p>Subject</p>
-          <input type="text" onChange={u => setUserName(u.target.value)} maxLength={20}/>
+          <input type="text" required="required" onChange={u => setSubject(u.target.value)} maxLength={50}/>
         </label>
+
         <label>
           <p>Description</p>
-          <input type="password" onChange={e => setPassword(e.target.value)} maxLength={20}/>
+          <input type="text" required="required" onChange={e => setFeedbackTxt(e.target.value)} maxLength={2000}/>
         </label>
+
+        <label>
+          <p>Please give your email if you want us to contact</p>
+          <input type="email" onChange={e => setEmail(e.target.value)} maxLength={2000}/>
+        </label>
+          
         <div>
           <Button type="submit" css={btnCSS}>Submit</Button>
 
@@ -54,39 +61,42 @@ const Feedback = ({ setToken }) => {
   )
 }
 
- const loginUser = async (credentials) => {
-   const username = credentials.username
-   const password = credentials.password
+ const sendFeedback = async (credentials) => {
+   const subject = credentials.subject
+   const feedbackTxt = credentials.feedbackTxt
+   const email = credentials.email
+
+   var token = localStorage.getItem("token");
+   const myObj = JSON.parse(token);
+
   const options = {
     method: 'POST',
     headers: {
+      Authorization: `Bearer ${myObj.token}`,
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
     body: JSON.stringify({ query: 
       `
-      {
-        login(username: "${username}", password: "${password}") {
+      mutation addFeedback {
+        addFeedback(subject: "${subject}", feedback: "${feedbackTxt}", email: "${email}") {
           id
-          token
         }
       }
       `
-    
     }),
   };
   try {
     const response = await fetch("http://localhost:3000/graphql", options);
     const json = await response.json();
-    //console.log(json.data.login)
-    if(json.data.login == null){
-      toast("check your username or password!")
-      return json.data.login;
+    if(json == null){
+      toast("Something went wrong!")
     }else{
-      return json.data.login;
+      toast("Feedback sent!")
+      console.log(json)
     }
   } catch (e) {
-    console.log("error: ", e);
+    console.log(e);
     return false;
   }
 };
