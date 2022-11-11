@@ -38,12 +38,12 @@ const Feedback = () => {
       <form onSubmit={handleSubmit}>
         <label>
           <p>Subject</p>
-          <input type="text" onChange={u => setSubject(u.target.value)} maxLength={50}/>
+          <input type="text" required="required" onChange={u => setSubject(u.target.value)} maxLength={50}/>
         </label>
 
         <label>
           <p>Description</p>
-          <input type="text" onChange={e => setFeedbackTxt(e.target.value)} maxLength={2000}/>
+          <input type="text" required="required" onChange={e => setFeedbackTxt(e.target.value)} maxLength={2000}/>
         </label>
 
         <label>
@@ -89,14 +89,11 @@ const Feedback = () => {
   try {
     const response = await fetch("http://localhost:3000/graphql", options);
     const json = await response.json();
-    //console.log(json.data.login)
     if(json == null){
       toast("Something went wrong!")
-      //return json.data.login;
     }else{
       toast("Feedback sent!")
       console.log(json)
-      //return json.data.login;
     }
   } catch (e) {
     console.log(e);
