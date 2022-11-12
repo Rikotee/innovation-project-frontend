@@ -34,10 +34,10 @@ const Registration = () => {
       <h1>Please Register</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          <p>Username</p>
+          <p>Email</p>
           <input
           id="username"
-          type="text"
+          type="email"
           required="required"
           onChange={u => setUserName(u.target.value)} maxLength={20}/>
         </label>
