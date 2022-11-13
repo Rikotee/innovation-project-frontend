@@ -73,6 +73,7 @@ const App = () => {
                 <Route path='/restaurant' component={Restaurant} />
                 <Route path='/feedback' component={Feedback} />
                 <Route path='/share' component={Share} />
+                <Route path='/admin' component={Admin} />
               </Routes>
               
             </nav>
