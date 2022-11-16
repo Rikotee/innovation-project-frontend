@@ -30,6 +30,18 @@ const Home = () => {
        })
      : "";
  
+
+     const Fruits = [
+      { name: 'Apple' },
+      { name: 'Apricot' },
+      { name: 'Honeyberry' },
+      { name: 'Papaya' },
+      { name: 'Jambul' },
+      { name: 'Plum' },
+      { name: 'Lemon' },
+      { name: 'Pomelo' }
+    ];
+
    // Return classes based on whether item is checked
    var isChecked = (item) =>
      checked.includes(item) ? "checked-item" : "not-checked-item";
@@ -51,6 +63,16 @@ const Home = () => {
       <div>
         {`Items checked are: ${checkedItems}`}
       </div>
+
+      <ul>
+        {
+          checked.map((todo) => {
+            return <li key={todo.id}> {todo.name}
+            <span onClick={()=> handleCheck(todo.id)} style={{marginLeft: "10px", color: "red", cursor: "pointer"}}>x</span>
+            </li>
+          })
+        }
+      </ul>
 
     </div>
   );
