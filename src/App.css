@@ -2,7 +2,7 @@ body {
   background-color: rgb(192, 197, 199);
 }
 
-.btn-home {
+.btn-home, .btn-parking, .btn-restaurant {
   border: 1px solid #616A94;
   border-radius: 20px;
   padding: 5px 10px;
@@ -13,52 +13,7 @@ body {
   font-size: 1em;
 }
 
-.btn-home-mobile {
-  display: none;
-}
-
-.btn-parking {
-  border: 1px solid #616A94;
-  border-radius: 20px;
-  padding: 5px 10px;
-  margin: 5px;
-  text-decoration: none;
-  color: #616A94;
-  background-color: #999;
-  font-size: 1em;
-}
-
-.btn-parking-mobile {
-  display: none;
-}
-
-.btn-restaurant {
-  border: 1px solid #616A94;
-  border-radius: 20px;
-  padding: 5px 10px;
-  margin: 5px;
-  text-decoration: none;
-  color: #616A94;
-  background-color: #999;
-  font-size: 1em;
-}
-
-.btn-restaurant-mobile {
-  display: none;
-}
-
-.btn-menu {
-  border: 1px solid #616A94;
-  border-radius: 20px;
-  padding: 5px 10px;
-  margin: 5px;
-  text-decoration: none;
-  color: #616A94;
-  background-color: #999;
-  font-size: 1em;
-}
-
-.btn-menu-mobile {
+.btn-home-mobile, .btn-parking-mobile, .btn-restaurant-mobile {
   display: none;
 }
 
@@ -66,6 +21,14 @@ input{
   width: 75%;
   height: 5rem;
   font-size: 1em;
+}
+
+.App {
+  text-align: center;
+}
+
+.navbar {
+  background-color: rgb(217, 197, 197);
 }
 
 /* bottom navigation */
@@ -87,227 +50,34 @@ input{
     justify-content: space-around;
   }
 
-  .btn-home {
+  .btn-home, .btn-parking, .btn-restaurant {
     display: none;
+  }
+
+  .btn-home-mobile, .btn-parking-mobile, .btn-restaurant-mobile {
+    background-color: rgb(240, 240, 240);
+    border-radius: 50%;
+    padding: 1.8rem;
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
+    display: flex;
+    justify-content: center;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   .btn-home-mobile {
-    background-color: rgb(240, 240, 240);
-    border-radius: 50%;
-    padding: 1.8rem;
-    margin: 1rem;
-    display: flex;
-    justify-content: center;
     background-image: url(./components/image/home.svg);
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  .btn-parking {
-    display: none;
-  }
+    }
 
   .btn-parking-mobile {
-    background-color: rgb(240, 240, 240);
-    border-radius: 50%;
-    padding: 1.8rem;
-    margin: 1rem;
-    display: flex;
-    justify-content: space-around;
     background-image: url(./components/image/car.png);
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  .btn-restaurant {
-    display: none;
   }
 
   .btn-restaurant-mobile {
-    background-color: rgb(240, 240, 240);
-    border-radius: 50%;
-    padding: 1.8rem;
-    margin: 1rem;
-    display: flex;
-    justify-content: space-around;
     background-image: url(./components/image/res.png);
-    background-position: center;
-    background-repeat: no-repeat;
   }
 
-  .btn-menu {
-    display: none;
-  }
-
-  .btn-menu-mobile {
-    background-color: rgb(240, 240, 240);
-    border-radius: 50%;
-    padding: 1.8rem;
-    margin: 1rem;
-    display: flex;
-    justify-content: space-around;
-    background-image: url(./components/image/menu.png);
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  .navbar img{
-    width: 100%;
-    height: 100%;
-  }
-}
-
-
-
-.App {
-  text-align: center;
-}
-
-.navbar {
-  background-color: rgb(217, 197, 197);
-
-}
-
-.btn-home {
-  border: 1px solid #616A94;
-  border-radius: 20px;
-  padding: 5px 10px;
-  margin: 5px;
-  text-decoration: none;
-  color: #616A94;
-  background-color: #999;
-  font-size: 1em;
-}
-
-.btn-home-mobile {
-  display: none;
-}
-
-.btn-parking {
-  border: 1px solid #616A94;
-  border-radius: 20px;
-  padding: 5px 10px;
-  margin: 5px;
-  text-decoration: none;
-  color: #616A94;
-  background-color: #999;
-  font-size: 1em;
-}
-
-.btn-parking-mobile {
-  display: none;
-}
-
-.btn-restaurant {
-  border: 1px solid #616A94;
-  border-radius: 20px;
-  padding: 5px 10px;
-  margin: 5px;
-  text-decoration: none;
-  color: #616A94;
-  background-color: #999;
-  font-size: 1em;
-}
-
-.btn-restaurant-mobile {
-  display: none;
-}
-
-.btn-menu {
-  border: 1px solid #616A94;
-  border-radius: 20px;
-  padding: 5px 10px;
-  margin: 5px;
-  text-decoration: none;
-  color: #616A94;
-  background-color: #999;
-  font-size: 1em;
-}
-
-.btn-menu-mobile {
-  display: none;
-}
-
-/* bottom navigation */
-@media only screen and (max-width: 600px) {
-  body {
-    background-color: rgb(210, 210, 210);
-  }
-  
-  .navbar {
-    background-color: rgb(80, 80, 80);
-    padding: 0.1rem;
-    box-sizing: border-box;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .btn-home {
-    display: none;
-  }
-
-  .btn-home-mobile {
-    background-color: rgb(240, 240, 240);
-    border-radius: 50%;
-    padding: 1.8rem;
-    margin: 1rem;
-    display: flex;
-    justify-content: center;
-    background-image: url(./components/image/home.svg);
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  .btn-parking {
-    display: none;
-  }
-
-  .btn-parking-mobile {
-    background-color: rgb(240, 240, 240);
-    border-radius: 50%;
-    padding: 1.8rem;
-    margin: 1rem;
-    display: flex;
-    justify-content: space-around;
-    background-image: url(./components/image/car.png);
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  .btn-restaurant {
-    display: none;
-  }
-
-  .btn-restaurant-mobile {
-    background-color: rgb(240, 240, 240);
-    border-radius: 50%;
-    padding: 1.8rem;
-    margin: 1rem;
-    display: flex;
-    justify-content: space-around;
-    background-image: url(./components/image/res.png);
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  .btn-menu {
-    display: none;
-  }
-
-  .btn-menu-mobile {
-    background-color: rgb(240, 240, 240);
-    border-radius: 50%;
-    padding: 1.8rem;
-    margin: 1rem;
-    display: flex;
-    justify-content: space-around;
-    background-image: url(./components/image/menu.png);
-    background-position: center;
-    background-repeat: no-repeat;
-  }
   .navbar img{
     width: 100%;
     height: 100%;
