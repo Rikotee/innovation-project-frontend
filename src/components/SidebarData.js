@@ -35,7 +35,7 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'share',
+    title: 'Share',
     path: '/share',
     icon: <FaIcons.FaEnvelopeOpenText />,
     cName: 'nav-text'
