@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from 'styled-components/macro'
-import FeedbackList from "../components/feedback";
+import '../components/feedback-style.css'
 
 const Intro = styled.div`
   margin-top: 1em;
@@ -11,6 +11,14 @@ const Admin = () => {
 
   const feedbacks = useLaunches()
   const adminCheck = useLaunchesAdmin()
+
+  const [list=feedbacks, setList] = React.useState()
+
+  function removeList(id) {
+    deleteFeedback(id)
+    const newList = list.filter((l) => l.id !== id)
+    setList(newList);
+  }
 
   if(adminCheck===false){
     return(
@@ -23,7 +31,21 @@ const Admin = () => {
   }else{
     return(
       <Intro>
-      <FeedbackList data={feedbacks} />
+          <div>
+        <h1>Feedbacks</h1>
+        <ul className="feedback-list">
+          {
+            list.map (content =>(
+              <li>
+                <span><strong>Subject:</strong> {content.subject}</span>
+                <span><strong>Feedback:</strong> {content.feedback}</span>
+                <span><strong>Email:</strong> {content.email}</span>
+                <span onClick={()=> removeList(content.id)} style={{marginLeft: "10px", color: "red", cursor: "pointer"}}>x</span>
+              </li>
+            ))
+          }
+        </ul>
+    </div>
       </Intro>
     )
   }
@@ -44,6 +66,7 @@ const useLaunches = () => {
         `
         {
           feedbacks {
+              id
               subject
               feedback
               email
@@ -84,6 +107,36 @@ const useLaunchesAdmin = () => {
   }, []);
 
   return feedbacks;
+};
+
+const deleteFeedback = async (id) => {
+  var token = localStorage.getItem("token");
+  const myObj = JSON.parse(token);
+
+ const options = {
+   method: 'POST',
+   headers: {
+     Authorization: `Bearer ${myObj.token}`,
+     'Content-Type': 'application/json',
+     Accept: 'application/json',
+   },
+   body: JSON.stringify({ query: 
+     `
+     mutation DeleteFeedback {
+      deleteFeedback(id: "${id}") {
+      id  
+      }
+    }
+     `
+   }),
+ };
+ try {
+   fetch("http://localhost:3000/graphql", options);
+ } catch (e) {
+   console.log(e);
+   return false;
+ }
+
 };
 
 export default Admin;
