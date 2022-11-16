@@ -66,7 +66,6 @@ const App = () => {
                   <button className='btn-restaurant'> Restaurant </button>
                   <button className='btn-restaurant-mobile'></button>
               </Link>
-              <button className='btn-menu-mobile'></button>
               <Navbar />
               <Routes>
                 
