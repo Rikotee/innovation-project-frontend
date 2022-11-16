@@ -79,15 +79,21 @@
 /* bottom navigation */
 @media only screen and (max-width: 600px) {
 
-  
-  .menu-bars {
-    margin-left: 0rem;
-    font-size: 2rem;
-    background: none;
-    position: relative;
-    width: 18rem;
-    margin-right: -430px;
-    margin-bottom: 50px;
+  .navbar {
+    background-color: rgb(240, 240, 240);
+    border-radius: 50%;
+    padding: 1.8rem;
+    margin: 1rem;
 
+    width: 80px;
+    height: 80px;
+    position: initial;
+    display: flex;
+    justify-content: center;
   }
+  .menu-bars {
+    margin-left: 2px;
+    margin-top: 10px;
+  }
+
 }
