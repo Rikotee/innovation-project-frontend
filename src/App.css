@@ -18,17 +18,11 @@ body {
 }
 
 input{
-  width: 75%;
-  height: 5rem;
   font-size: 1em;
 }
 
 .App {
   text-align: center;
-}
-
-.navbar {
-  background-color: rgb(217, 197, 197);
 }
 
 /* bottom navigation */

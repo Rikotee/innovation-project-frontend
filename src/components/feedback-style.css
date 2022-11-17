@@ -19,9 +19,10 @@
   }
 
   .list-container-f {
-    background-color: aliceblue;
+    background-color: #646464;
     text-align: center;
-    width: 500px;
+    width: 80%;
+    margin: 10%;
   }
 
   .centered {
