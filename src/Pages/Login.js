@@ -37,8 +37,8 @@ const Login = ({ setToken }) => {
       <h1>Please Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          <p>Username</p>
-          <input type="text" required="required" onChange={u => setUserName(u.target.value)} maxLength={20}/>
+          <p>Email</p>
+          <input type="email" required="required" onChange={u => setUserName(u.target.value)} maxLength={20}/>
         </label>
         <label>
           <p>Password</p>
@@ -75,6 +75,7 @@ const Login = ({ setToken }) => {
         login(username: "${username}", password: "${password}") {
           id
           token
+          username
         }
       }
       `

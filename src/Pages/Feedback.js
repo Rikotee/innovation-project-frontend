@@ -15,11 +15,23 @@ const btnCSS = css`
     margin-top: 2em;
 `;
 
+let email = ""
+
 const Feedback = () => {
+
+  var token = localStorage.getItem("token");
+  const myObj = JSON.parse(token);
+
+  const emailT = myObj.username;
+
+  const [checked, setChecked] = React.useState(false);
+
+  const handleChange = () => {
+    setChecked(!checked);
+  };
 
   const [subject, setSubject] = useState();
   const [feedbackTxt, setFeedbackTxt] = useState();
-  const [email, setEmail] = useState();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -46,11 +58,15 @@ const Feedback = () => {
           <input type="text" required="required" onChange={e => setFeedbackTxt(e.target.value)} maxLength={2000}/>
         </label>
 
-        <label>
-          <p>Please give your email if you want us to contact</p>
-          <input type="email" onChange={e => setEmail(e.target.value)} maxLength={2000}/>
-        </label>
-          
+<div>
+        <Checkbox
+        label="Add my email"
+        value={checked}
+        onChange={handleChange}
+      />
+
+      <p>{emailT}</p>
+       </div>   
         <div>
           <Button type="submit" css={btnCSS}>Submit</Button>
 
@@ -104,5 +120,22 @@ const Feedback = () => {
 Feedback.propTypes = {
   setToken: PropTypes.func
 }
+
+const Checkbox = ({ label, value, onChange }) => {
+  var token = localStorage.getItem("token");
+  const myObj = JSON.parse(token);
+
+  if(value === true){
+    email = myObj.username;
+  }else{
+    email = ""
+  }
+  return (
+    <label>
+      <input type="checkbox" checked={value} onChange={onChange} />
+      {label}
+    </label>
+  );
+};
 
 export default Feedback;
