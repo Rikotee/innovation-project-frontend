@@ -4,6 +4,10 @@ import '../components/style.css'
 
 const Home = () => {
 
+
+  const events = useLaunches()
+  console.log(events)
+
    // State with list of all checked item
    const [checked, setChecked] = useState([]);
    const checkList = [
@@ -30,18 +34,6 @@ const Home = () => {
        })
      : "";
  
-
-     const Fruits = [
-      { name: 'Apple' },
-      { name: 'Apricot' },
-      { name: 'Honeyberry' },
-      { name: 'Papaya' },
-      { name: 'Jambul' },
-      { name: 'Plum' },
-      { name: 'Lemon' },
-      { name: 'Pomelo' }
-    ];
-
    // Return classes based on whether item is checked
    var isChecked = (item) =>
      checked.includes(item) ? "checked-item" : "not-checked-item";
@@ -74,8 +66,56 @@ const Home = () => {
         }
       </ul>
 
+      <div>
+        <h1>Events</h1>
+        <div className="list-container-f">
+        <ul className="feedback-list">
+          {
+            events.map (content =>(
+              <li>
+                <span><strong>Subject:</strong> {content.subject}</span>
+                <span><strong>Event:</strong> {content.event}</span>
+              </li>
+            ))
+          }
+        </ul>
+    </div>
+    </div>
+
     </div>
   );
+
+};
+
+
+const useLaunches = () => {
+  const [events, setEvents] = React.useState([]);
+
+  React.useEffect(() => {
+    var token = localStorage.getItem("token");
+    const myObj = JSON.parse(token);
+
+    fetch("http://localhost:3000/graphql", {
+    method: "POST",
+    headers: {Authorization: `Bearer ${myObj.token}`,
+    "Content-Type": "application/json" },
+    body: JSON.stringify({ query: 
+      `
+      {
+        events {
+          id
+          subject
+          event
+        }
+      }
+      `})
+    })
+    .then((response) => response.json())
+/*       .then((data) => console.log(data)); */
+    .then(data => setEvents(data.data.events))
+  }, []);
+
+  return events;
 };
 
 export default Home;

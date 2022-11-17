@@ -17,3 +17,13 @@
     display: block;
     text-align: center;
   }
+
+  .list-container-f {
+    background-color: aliceblue;
+    text-align: center;
+    width: 500px;
+  }
+
+  .centered {
+    text-align: center;
+  }

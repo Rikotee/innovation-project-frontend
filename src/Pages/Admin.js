@@ -33,6 +33,10 @@ const Admin = () => {
       <Intro>
           <div>
         <h1>Feedbacks</h1>
+        <div className="list-container-f">
+
+
+        
         <ul className="feedback-list">
           {
             list.map (content =>(
@@ -45,6 +49,7 @@ const Admin = () => {
             ))
           }
         </ul>
+    </div>
     </div>
       </Intro>
     )
