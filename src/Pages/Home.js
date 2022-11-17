@@ -3,11 +3,9 @@ import '../components/style.css'
 import EventsList from "../components/events";
 import WidgetSelector from "../components/widgetSelector";
 
-
 const Home = () => {
 
   const events = useLaunches()
-  console.log(events)
 
    const checkList = [
     {id: 1, name: "Events"},

@@ -40,10 +40,9 @@ const WidgetSelector = (props) => {
       ))}
     </div>
     {`Items checked are: ${checkedItems}`}
-  </div>
-  
 
-  
+  </div>
+  	   
   );
 }
 
