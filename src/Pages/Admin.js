@@ -35,8 +35,6 @@ const Admin = () => {
         <h1>Feedbacks</h1>
         <div className="list-container-f">
 
-
-        
         <ul className="feedback-list">
           {
             list.map (content =>(
