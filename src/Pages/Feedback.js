@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components/macro'
 import Button from "../components/Button";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import emailjs from "@emailjs/browser";
 toast.configure()
 
 const Intro = styled.div`
@@ -18,6 +19,28 @@ const btnCSS = css`
 let email = ""
 
 const Feedback = () => {
+  const form = useRef();
+
+/*   const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_zu1bwg8",
+        "template_yu0sc8v",
+        form.current,
+        "aIR9zKHg7S8xEqWPi"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          console.log("message sent");
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  }; */
 
   var token = localStorage.getItem("token");
   const myObj = JSON.parse(token);
@@ -41,21 +64,38 @@ const Feedback = () => {
       email
 
     });
+
+    emailjs
+    .sendForm(
+      "service_zu1bwg8",
+      "template_yu0sc8v",
+      form.current,
+      "aIR9zKHg7S8xEqWPi"
+    )
+    .then(
+      (result) => {
+        console.log(result.text);
+        console.log("message sent");
+      },
+      (error) => {
+        console.log(error.text);
+      }
+    );
   }
 
   return(
     <Intro>
     <div className="feedback-wrapper">
       <h1>Feedback</h1>
-      <form onSubmit={handleSubmit}>
+      <form ref={form} onSubmit={handleSubmit}>
         <label>
           <p>Subject</p>
-          <input type="text" required="required" onChange={u => setSubject(u.target.value)} maxLength={50}/>
+          <input name="user_name" type="text" required="required" onChange={u => setSubject(u.target.value)} maxLength={50}/>
         </label>
 
         <label>
           <p>Description</p>
-          <input type="text" required="required" onChange={e => setFeedbackTxt(e.target.value)} maxLength={2000}/>
+          <input name="message" type="text" required="required" onChange={e => setFeedbackTxt(e.target.value)} maxLength={2000}/>
         </label>
 
 <div>
@@ -72,6 +112,18 @@ const Feedback = () => {
 
         </div>
       </form>
+
+{/*       <form ref={form} onSubmit={sendEmail}>
+        <label>Name</label>
+        <input type="text" name="user_name" />
+        <label>Email</label>
+        <input type="email" name="user_email" />
+        <label>Message</label>
+        <textarea name="message" />
+        <input type="submit" value="Send" />
+      </form> */}
+
+
     </div>
         </Intro>
   )
@@ -109,7 +161,7 @@ const Feedback = () => {
       toast("Something went wrong!")
     }else{
       toast("Feedback sent!")
-      console.log(json)
+      //console.log(json)
     }
   } catch (e) {
     console.log(e);
