@@ -28,8 +28,6 @@ const Feedback = () => {
 
   const [checked, setChecked] = React.useState(false);
 
-  console.log(checked)
-
   const handleChange = () => {
     setChecked(!checked);
   };
@@ -49,10 +47,10 @@ const Feedback = () => {
     if(checked===true){
           emailjs
     .sendForm(
-      "service_zu1bwg8",
-      "template_yu0sc8v",
+      process.env.REACT_APP_EMAILJS_SERVICE_ID,
+      process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
       form.current,
-      "aIR9zKHg7S8xEqWPi"
+      process.env.REACT_APP_EMAILJS_USER_ID
     )
     .then(
       (result) => {
@@ -88,7 +86,7 @@ const Feedback = () => {
         onChange={handleChange}
       />
 
-      <p>{emailT}</p>
+      <p name="user_email">{emailT}</p>
        </div>   
         <div>
           <Button type="submit" css={btnCSS}>Submit</Button>
