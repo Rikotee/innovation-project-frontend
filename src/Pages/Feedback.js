@@ -75,8 +75,13 @@ const Feedback = () => {
         </label>
 
         <label>
-          <p>Description</p>
+          <p>Message</p>
           <input name="message" type="text" required="required" onChange={e => setFeedbackTxt(e.target.value)} maxLength={2000}/>
+        </label>
+
+        <label>
+          <p>Email</p>
+          <input name="user_email" type="text" value={emailT} onChange={e => setFeedbackTxt(e.target.value)} maxLength={2000}/>
         </label>
 
 <div>
@@ -86,7 +91,7 @@ const Feedback = () => {
         onChange={handleChange}
       />
 
-      <p name="user_email">{emailT}</p>
+{/*       <p>{emailT}</p> */}
        </div>   
         <div>
           <Button type="submit" css={btnCSS}>Submit</Button>
