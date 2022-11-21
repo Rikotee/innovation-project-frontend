@@ -21,33 +21,14 @@ let email = ""
 const Feedback = () => {
   const form = useRef();
 
-/*   const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs
-      .sendForm(
-        "service_zu1bwg8",
-        "template_yu0sc8v",
-        form.current,
-        "aIR9zKHg7S8xEqWPi"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          console.log("message sent");
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  }; */
-
   var token = localStorage.getItem("token");
   const myObj = JSON.parse(token);
 
   const emailT = myObj.username;
 
   const [checked, setChecked] = React.useState(false);
+
+  console.log(checked)
 
   const handleChange = () => {
     setChecked(!checked);
@@ -65,7 +46,8 @@ const Feedback = () => {
 
     });
 
-    emailjs
+    if(checked===true){
+          emailjs
     .sendForm(
       "service_zu1bwg8",
       "template_yu0sc8v",
@@ -81,6 +63,7 @@ const Feedback = () => {
         console.log(error.text);
       }
     );
+    }
   }
 
   return(
@@ -100,7 +83,7 @@ const Feedback = () => {
 
 <div>
         <Checkbox
-        label="Add my email"
+        label="Add my email and send notification to app handlers"
         value={checked}
         onChange={handleChange}
       />
