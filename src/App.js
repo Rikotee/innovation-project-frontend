@@ -9,6 +9,8 @@ import Menu from './Pages/Menu';
 import Share from './Pages/Share';
 import Feedback from './Pages/Feedback';
 import Admin from './Pages/Admin';
+import AdminFeedback from './Pages/AdminFeedback';
+import AdminEvent from './Pages/AdminEvent';
 import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import useToken from './components/useToken';
 import styled, { css } from 'styled-components/macro'
@@ -87,6 +89,8 @@ const App = () => {
               <Route path="/feedback" element={<Feedback />} />
               <Route path="/share" element={<Share />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/adminfeedback" element={<AdminFeedback />} />
+              <Route path="/adminevent" element={<AdminEvent />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
       </Router>

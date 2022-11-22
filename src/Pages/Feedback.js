@@ -24,8 +24,6 @@ const Feedback = () => {
   var token = localStorage.getItem("token");
   const myObj = JSON.parse(token);
 
-  const emailT = myObj.username;
-
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = () => {
@@ -44,6 +42,8 @@ const Feedback = () => {
 
     });
 
+    // This will send email notification if user 
+    // check checkbox
     if(checked===true){
           emailjs
     .sendForm(
@@ -81,7 +81,7 @@ const Feedback = () => {
 
         <label>
           <p>Email</p>
-          <input name="user_email" type="text" value={emailT} onChange={e => setFeedbackTxt(e.target.value)} maxLength={2000}/>
+          <input name="user_email" type="text" value={myObj.username} onChange={e => setFeedbackTxt(e.target.value)} maxLength={2000}/>
         </label>
 
 <div>
@@ -91,30 +91,18 @@ const Feedback = () => {
         onChange={handleChange}
       />
 
-{/*       <p>{emailT}</p> */}
        </div>   
         <div>
           <Button type="submit" css={btnCSS}>Submit</Button>
-
         </div>
+
       </form>
-
-{/*       <form ref={form} onSubmit={sendEmail}>
-        <label>Name</label>
-        <input type="text" name="user_name" />
-        <label>Email</label>
-        <input type="email" name="user_email" />
-        <label>Message</label>
-        <textarea name="message" />
-        <input type="submit" value="Send" />
-      </form> */}
-
-
     </div>
         </Intro>
   )
 }
 
+// This will send feedback to database
  const sendFeedback = async (credentials) => {
    const subject = credentials.subject
    const feedbackTxt = credentials.feedbackTxt
