@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components/macro'
 import Button from "../components/Button";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom";
 toast.configure()
 
 const Intro = styled.div`
@@ -19,6 +20,7 @@ const btnCSS = css`
 const AdminEvent = () => {
 
     const adminCheck = useLaunchesAdmin()
+    const events = useLaunches()
 
     var token = localStorage.getItem("token");
     const myObj = JSON.parse(token);
@@ -32,7 +34,15 @@ const AdminEvent = () => {
         subject,
         eventTxt,
       });
-  
+      window.location.reload(false);
+    }
+
+    const [list=events, setList] = React.useState()
+
+    function removeList(id) {
+      deleteEvent(id)
+      const newList = list.filter((l) => l.id !== id)
+      setList(newList);
     }
 
     if(adminCheck===false){
@@ -46,6 +56,10 @@ const AdminEvent = () => {
       }else{
         return(
     <Intro>
+            <div>
+            <Link to="/admin" className="btn btn-primary">Return Admin Page</Link>
+          </div>
+
     <div className="feedback-wrapper">
       <h1>Create Event</h1>
       <form onSubmit={handleSubmit}>
@@ -65,6 +79,23 @@ const AdminEvent = () => {
 
         </form>
         </div>
+
+
+        <h1>Events</h1>
+        <div className="list-container-f">
+
+        <ul className="feedback-list">
+          {
+            list.map (content =>(
+              <li>
+            <span><strong>Subject:</strong> {content.subject}</span>
+            <span><strong>Event:</strong> {content.event}</span>
+                <span onClick={()=> removeList(content.id)} style={{marginLeft: "10px", color: "red", cursor: "pointer"}}>x</span>
+              </li>
+            ))
+          }
+        </ul>
+            </div>
         </Intro>
         )
     };
@@ -110,7 +141,7 @@ const addEvent = async (credentials) => {
  };
 
  const useLaunchesAdmin = () => {
-    const [feedbacks, setFeedbacks] = React.useState([]);
+    const [events, setEvents] = React.useState([]);
   
     React.useEffect(() => {
       var token = localStorage.getItem("token");
@@ -130,10 +161,69 @@ const addEvent = async (credentials) => {
         `})
       })
       .then((response) => response.json())
-      .then(data => setFeedbacks(data.data.user.admin))
+      .then(data => setEvents(data.data.user.admin))
     }, []);
   
-    return feedbacks;
+    return events;
+  };
+
+  const useLaunches = () => {
+    const [events, setEvents] = React.useState([]);
+
+    React.useEffect(() => {
+      var token = localStorage.getItem("token");
+      const myObj = JSON.parse(token);
+
+      fetch("http://localhost:3000/graphql", {
+      method: "POST",
+      headers: {Authorization: `Bearer ${myObj.token}`,
+      "Content-Type": "application/json" },
+      body: JSON.stringify({ query: 
+        `
+        {
+          events {
+              id
+              subject
+              event
+          }
+        }
+        `})
+      })
+      .then((response) => response.json())
+/*       .then((data) => console.log(data)); */
+      .then(data => setEvents(data.data.events))
+    }, []);
+
+    return events;
+};
+
+const deleteEvent = async (id) => {
+    var token = localStorage.getItem("token");
+    const myObj = JSON.parse(token);
+  
+   const options = {
+     method: 'POST',
+     headers: {
+       Authorization: `Bearer ${myObj.token}`,
+       'Content-Type': 'application/json',
+       Accept: 'application/json',
+     },
+     body: JSON.stringify({ query: 
+       `
+       mutation DeleteEvent {
+        deleteEvent(id: "${id}") {
+        id  
+        }
+      }
+       `
+     }),
+   };
+   try {
+     fetch("http://localhost:3000/graphql", options);
+   } catch (e) {
+     console.log(e);
+     return false;
+   }
   };
 
 export default AdminEvent;

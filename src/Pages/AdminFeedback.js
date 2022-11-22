@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import styled from 'styled-components/macro'
 import '../components/feedback-style.css'
+import { Link } from "react-router-dom";
 
 const Intro = styled.div`
   margin-top: 1em;
@@ -31,6 +32,9 @@ const AdminFeedback = () => {
   }else{
     return(
       <Intro>
+            <div>
+            <Link to="/admin" className="btn btn-primary">Return Admin Page</Link>
+          </div>
           <div>
         <h1>Feedbacks</h1>
         <div className="list-container-f">
