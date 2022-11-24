@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Home from './Pages/Home';
 import ErrorPage from './Pages/ErrorPage';
@@ -18,6 +18,8 @@ import Button from './components/Button';
 import LogOutButton from './components/LogOutButton';
 import Navbar from './components/Navbar';
 import * as FaIcons from 'react-icons/fa';
+import Joyride from 'react-joyride';
+import { useMediaPredicate } from "react-media-hook";
 
 const Intro = styled.div`
   margin-top: 1em;
@@ -37,6 +39,8 @@ const LogOut = styled.div`
 `; */
 
 const App = () => {
+  const biggerThan600 = useMediaPredicate("(min-width: 600px)");
+  const smallerThan600 = useMediaPredicate("(max-width: 600px)");
   const { token, setToken } = useToken();
 
   if(!token) {
@@ -45,6 +49,94 @@ const App = () => {
 
   return (
     <div>
+      {biggerThan600 && <Joyride
+      styles={{
+        tooltipContainer: {
+            textAlign: "left"
+          },
+        buttonNext: {
+            backgroundColor: "blue"
+          },
+        buttonBack: {
+            marginRight: 10,
+            color: "blue"
+          }
+      }}
+          steps={ [
+      {
+        target: '.btn-home',
+        content: 'Here you can find all widgets and interact with them',
+        disableBeacon: true
+      },
+      {
+        target: '.btn-parking',
+        content: 'Locate your car using our parking feature',
+        disableBeacon: true
+      },
+      {
+        target: '.btn-restaurant',
+        content: 'Find out the best places to eat near you with live traffic visibility',
+        disableBeacon: true
+      },
+      {
+        target: '.menu-bars',
+        content: 'This is the menu where all the other features lie',
+        disableBeacon: true
+      },
+      {
+        target: '.not-checked-item',
+        content: 'By checking boxes you can decide the content for your home screen',
+        disableBeacon: true
+      },
+    ]}
+    continuous = {true}
+    showSkipButton={true}
+    
+        />}
+      {smallerThan600 &&<Joyride
+      styles={{
+        tooltipContainer: {
+            textAlign: "left"
+          },
+        buttonNext: {
+            backgroundColor: "blue"
+          },
+        buttonBack: {
+            marginRight: 10,
+            color: "blue"
+          }
+      }}
+          steps={ [
+      {
+        target: '.btn-home-mobile',
+        content: 'Here you can find all widgets and interact with them',
+        disableBeacon: true
+      },
+      {
+        target: '.btn-parking-mobile',
+        content: 'Locate your car using our parking feature',
+        disableBeacon: true
+      },
+      {
+        target: '.btn-restaurant-mobile',
+        content: 'Find out the best places to eat near you with live traffic visibility',
+        disableBeacon: true
+      },
+      {
+        target: '.menu-bars',
+        content: 'This is the menu where all the other features lie',
+        disableBeacon: true
+      },
+      {
+        target: '.not-checked-item',
+        content: 'By checking boxes you can decide the content for your home screen',
+        disableBeacon: true
+      },
+    ]}
+    continuous = {true}
+    showSkipButton={true}
+    
+        />}
       {/* Logout button */}
           <LogOut>
             <LogOutButton onClick={() => {
