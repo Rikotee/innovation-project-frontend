@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import '../components/style.css'
 import EventsList from "../components/events";
+import HslWidget from "./HslWidget";
 
 const Home = () => {
 
@@ -39,6 +40,12 @@ const Home = () => {
       return <div><EventsList data={events} /></div>;  
     }
   };
+
+  const hsltWidget = (checked) =>{
+    if (checked.includes('HSL')) {
+      return <HslWidget></HslWidget>;  
+    }
+  };
  
   return (
     <div className="app">
@@ -62,7 +69,7 @@ const Home = () => {
 {/*       <div>
         <EventsList data={events} />
       </div> */}
-
+    <ul> {hsltWidget(checked)} </ul>
     </div>
   );
 };
