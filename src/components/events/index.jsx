@@ -11,6 +11,7 @@ const EventsList = (props) => {
         props.data.map (content =>(
           <li>
             <span><strong>Subject:</strong> {content.subject}</span>
+            <span><strong>Date:</strong> {content.date}</span>
             <span><strong>Event:</strong> {content.event}</span>
           </li>
         ))

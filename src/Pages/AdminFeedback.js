@@ -46,6 +46,7 @@ const AdminFeedback = () => {
                 <span><strong>Subject:</strong> {content.subject}</span>
                 <span><strong>Feedback:</strong> {content.feedback}</span>
                 <span><strong>Email:</strong> {content.email}</span>
+                <span><strong>Date:</strong> {content.date}</span>
                 <span onClick={()=> removeList(content.id)} style={{marginLeft: "10px", color: "red", cursor: "pointer"}}>x</span>
               </li>
             ))
@@ -77,6 +78,7 @@ const useLaunches = () => {
               subject
               feedback
               email
+              date
           }
         }
         `})

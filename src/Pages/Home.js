@@ -92,6 +92,7 @@ const useLaunches = () => {
           id
           subject
           event
+          date
         }
       }
       `})

@@ -27,14 +27,22 @@ const AdminEvent = () => {
   
     const [subject, setSubject] = useState();
     const [eventTxt, setEventTxt] = useState();
-  
+
+    const current = new Date();
+    const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+
     const handleSubmit = async e => {
       e.preventDefault();
       await addEvent({
         subject,
         eventTxt,
+        date
       });
-      window.location.reload(false);
+
+       setTimeout(() => {
+        window.location.reload(false); 
+        }, 1000);
+      
     }
 
     const [list=events, setList] = React.useState()
@@ -90,6 +98,7 @@ const AdminEvent = () => {
               <li>
             <span><strong>Subject:</strong> {content.subject}</span>
             <span><strong>Event:</strong> {content.event}</span>
+            <span><strong>Date:</strong> {content.date}</span>
                 <span onClick={()=> removeList(content.id)} style={{marginLeft: "10px", color: "red", cursor: "pointer"}}>x</span>
               </li>
             ))
@@ -104,6 +113,7 @@ const AdminEvent = () => {
 const addEvent = async (credentials) => {
     const subject = credentials.subject
     const eventTxt = credentials.eventTxt
+    const date = credentials.date
 
     var token = localStorage.getItem("token");
     const myObj = JSON.parse(token);
@@ -118,7 +128,7 @@ const addEvent = async (credentials) => {
      body: JSON.stringify({ query: 
        `
        mutation AddEvent {
-        addEvent(subject: "${subject}", event: "${eventTxt}") {
+        addEvent(subject: "${subject}", event: "${eventTxt}", date: "${date}") {
            id
          }
        }
@@ -185,6 +195,7 @@ const addEvent = async (credentials) => {
               id
               subject
               event
+              date
           }
         }
         `})

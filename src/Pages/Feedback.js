@@ -29,12 +29,9 @@ const Feedback = () => {
   const handleChange = () => {
     setChecked(!checked);
   };
+
   const current = new Date();
-
   const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
-
-  console.log(date)
-
 
   const [subject, setSubject] = useState();
   const [feedbackTxt, setFeedbackTxt] = useState();
@@ -44,7 +41,8 @@ const Feedback = () => {
     await sendFeedback({
       subject,
       feedbackTxt,
-      email
+      email,
+      date
 
     });
 
@@ -113,6 +111,7 @@ const Feedback = () => {
    const subject = credentials.subject
    const feedbackTxt = credentials.feedbackTxt
    const email = credentials.email
+   const date = credentials.date
 
    var token = localStorage.getItem("token");
    const myObj = JSON.parse(token);
@@ -127,7 +126,7 @@ const Feedback = () => {
     body: JSON.stringify({ query: 
       `
       mutation addFeedback {
-        addFeedback(subject: "${subject}", feedback: "${feedbackTxt}", email: "${email}") {
+        addFeedback(subject: "${subject}", feedback: "${feedbackTxt}", email: "${email}", date: "${date}") {
           id
         }
       }
