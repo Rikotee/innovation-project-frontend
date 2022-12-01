@@ -4,7 +4,7 @@
     justify-content: end;
     padding-right: 14px;
     align-items: center;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 0;
     width: fit-content;
@@ -26,6 +26,7 @@
     bottom: 0;
     right: 0%;
     transition: 850ms;
+    opacity: 95%;
   }
   
   .nav-menu.active {
@@ -95,5 +96,4 @@
     margin-left: 2px;
     margin-top: 10px;
   }
-
 }

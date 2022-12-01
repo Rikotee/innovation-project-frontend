@@ -14,6 +14,12 @@ const Intro = styled.div`
 
 const btnCSS = css`
     margin-top: 2em;
+    background-color: white;
+    border-radius: 20px;
+`;
+
+const addCSS = css`
+    margin-top: 1em;
 `;
 
 let email = ""
@@ -88,11 +94,13 @@ const Feedback = () => {
           <input name="user_email" type="text" value={myObj.username} onChange={e => setFeedbackTxt(e.target.value)} maxLength={2000}/>
         </label>
 
-<div>
+<div css={addCSS}>
+        
         <Checkbox
         label="Add my email and send notification to app handlers"
         value={checked}
         onChange={handleChange}
+        
       />
 
        </div>   

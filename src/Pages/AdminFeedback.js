@@ -33,8 +33,8 @@ const AdminFeedback = () => {
     return(
       <Intro>
             <div>
-            <Link to="/admin" className="btn btn-primary">Return Admin Page</Link>
-          </div>
+            <Link to="/admin"><button className="adminButtons">Return to Admin Page</button></Link>
+        </div>
           <div>
         <h1>Feedbacks</h1>
         <div className="list-container-f">

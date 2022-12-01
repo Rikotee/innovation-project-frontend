@@ -15,6 +15,8 @@ const Intro = styled.div`
 
 const btnCSS = css`
     margin-top: 2em;
+    background-color: white;
+    border-radius: 20px;
 `;
 
 const AdminEvent = () => {
@@ -64,9 +66,9 @@ const AdminEvent = () => {
       }else{
         return(
     <Intro>
-            <div>
-            <Link to="/admin" className="btn btn-primary">Return Admin Page</Link>
-          </div>
+        <div>
+            <Link to="/admin"><button className="adminButtons">Return to Admin Page</button></Link>
+        </div>
 
     <div className="feedback-wrapper">
       <h1>Create Event</h1>
@@ -77,7 +79,7 @@ const AdminEvent = () => {
         </label>
 
         <label>
-          <p>event</p>
+          <p>Event</p>
           <input type="text" required="required" onChange={e => setEventTxt(e.target.value)} maxLength={2000}/>
         </label>
 
@@ -91,11 +93,10 @@ const AdminEvent = () => {
 
         <h1>Events</h1>
         <div className="list-container-f">
-
         <ul className="feedback-list">
           {
             list.map (content =>(
-              <li>
+                <li>
             <span><strong>Subject:</strong> {content.subject}</span>
             <span><strong>Event:</strong> {content.event}</span>
             <span><strong>Date:</strong> {content.date}</span>

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import '../components/style.css'
 import EventsList from "../components/events";
 import HslWidget from "./HslWidget";
+import Paper from "@material-ui/core/Paper";
+import {FaRegBell} from "react-icons/fa";
 
 const Home = () => {
 
@@ -49,7 +51,7 @@ const Home = () => {
  
   return (
     <div className="app">
-
+<h1>My Campus</h1>
 <div className="checkList">
     <div className="title">Your WidgetList:</div>
     <div className="list-container">
@@ -64,8 +66,9 @@ const Home = () => {
   </div>
 
 {/*      <ul> {listItems} </ul> */}
+<Paper style={{maxHeight: 490 , overflow: 'auto', backgroundColor: 'rgb(28,69,152)'}}>
     <ul> {eventWidget(checked)} </ul>
-
+</Paper>
 {/*       <div>
         <EventsList data={events} />
       </div> */}

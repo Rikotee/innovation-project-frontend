@@ -23,13 +23,12 @@ const Admin = () => {
   }else{
     return(
       <Intro>
-
           <div>
-            <Link to="/adminfeedback" className="btn btn-primary">Check Feedbacks</Link>
+            <Link to="/adminfeedback"><button className="adminButtons">Check Feedbacks</button></Link>
           </div>
-
+          
           <div>
-            <Link to="/adminevent" className="btn btn-primary">Create Event</Link>
+            <Link to="/adminevent"><button className="adminButtons">Create Event</button></Link>
           </div>
 
       </Intro>

@@ -17,18 +17,6 @@ export const SidebarData = [
     cName: 'nav-text'
   }, */
   {
-    title: 'Restaurant',
-    path: '/restaurant',
-    icon: <FaIcons.FaCartPlus />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Team',
-    path: '/team',
-    icon: <IoIcons.IoMdPeople />,
-    cName: 'nav-text'
-  },
-  {
     title: 'Feedback',
     path: '/feedback',
     icon: <FaIcons.FaEnvelopeOpenText />,
@@ -37,19 +25,13 @@ export const SidebarData = [
   {
     title: 'Share',
     path: '/share',
-    icon: <FaIcons.FaEnvelopeOpenText />,
+    icon: <IoIcons.IoMdPeople />,
     cName: 'nav-text'
   },
   {
     title: 'Admin',
     path: '/admin',
-    icon: <FaIcons.FaEnvelopeOpenText />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Support',
-    path: '/support',
-    icon: <IoIcons.IoMdHelpCircle />,
+    icon: <IoIcons.IoMdPeople />,
     cName: 'nav-text'
   }
 ];

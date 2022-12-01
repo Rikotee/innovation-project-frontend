@@ -52,10 +52,10 @@ const App = () => {
       {biggerThan600 && <Joyride
       styles={{
         tooltipContainer: {
-            textAlign: "left"
+            textAlign: "center"
           },
         buttonNext: {
-            backgroundColor: "blue"
+            backgroundColor: "rgb(28, 69, 152)"
           },
         buttonBack: {
             marginRight: 10,
@@ -96,10 +96,10 @@ const App = () => {
       {smallerThan600 &&<Joyride
       styles={{
         tooltipContainer: {
-            textAlign: "left"
+            textAlign: "center"
           },
         buttonNext: {
-            backgroundColor: "blue"
+            backgroundColor: "rgb(28, 69, 152)"
           },
         buttonBack: {
             marginRight: 10,
