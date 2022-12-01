@@ -43,11 +43,83 @@ const App = () => {
   const smallerThan600 = useMediaPredicate("(max-width: 600px)");
   const { token, setToken } = useToken();
 
+    const [items, setItems] = useState([]);
+
+    // get item from local storage to check if onboarding is shown already
+    useEffect(() => {
+      const items = JSON.parse(localStorage.getItem('ob'));
+      if (items) {
+       setItems(items);
+      }
+    }, []);
+
   if(!token) {
     return <Login setToken={setToken} />
   };
 
+// set item to local storage. Onboarding shown
+localStorage.setItem('ob', true);
+
+if(items===true){
+
   return (
+    <div>
+      {/* Logout button */}
+          <LogOut>
+            <LogOutButton onClick={() => {
+              localStorage.clear();
+              window.location.reload();
+              }}>Logout</LogOutButton>
+    </LogOut>
+
+    <Intro>
+      
+          <Router>
+            <nav className='navbarMenu'>
+              <Link to="/">
+                  <button className='btn-home'> Homepage </button>
+                  <button className='btn-home-mobile'></button>
+              </Link>
+              <Link to="/parking">
+                  <button className='btn-parking'> Parking </button>
+                  <button className='btn-parking-mobile'></button>
+              </Link>
+              <Link to="/restaurant">
+                  <button className='btn-restaurant'> Restaurant </button>
+                  <button className='btn-restaurant-mobile'></button>
+              </Link>
+              <Navbar />
+              <Routes>
+                
+                <Route path="/" exact component={Home} />
+                <Route path='/restaurant' component={Restaurant} />
+                <Route path='/feedback' component={Feedback} />
+                <Route path='/share' component={Share} />
+                <Route path='/admin' component={Admin} />
+              </Routes>
+              
+            </nav>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/parking" element={<Parking />} />
+              <Route path="/restaurant" element={<Restaurant />} />
+              <Route path="/menu" element={<Menu />} />
+              <Route path="/feedback" element={<Feedback />} />
+              <Route path="/share" element={<Share />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/adminfeedback" element={<AdminFeedback />} />
+              <Route path="/adminevent" element={<AdminEvent />} />
+              <Route path="*" element={<ErrorPage />} />
+            </Routes>
+      </Router>
+    </Intro>
+    </div>
+  );
+
+}else{
+
+    return (
     <div>
       {biggerThan600 && <Joyride
       styles={{
@@ -189,6 +261,10 @@ const App = () => {
     </Intro>
     </div>
   );
+}
+
+
+
 };
 
 export default App;
