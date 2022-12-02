@@ -31,6 +31,10 @@ const Admin = () => {
             <Link to="/adminevent"><button className="adminButtons">Create Event</button></Link>
           </div>
 
+          <div>
+            <Link to="/adminnews"><button className="adminButtons">Create News</button></Link>
+          </div>
+
       </Intro>
     )
   }

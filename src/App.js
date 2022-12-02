@@ -11,6 +11,7 @@ import Feedback from './Pages/Feedback';
 import Admin from './Pages/Admin';
 import AdminFeedback from './Pages/AdminFeedback';
 import AdminEvent from './Pages/AdminEvent';
+import AdminNews from './Pages/AdminNews';
 import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import useToken from './components/useToken';
 import styled, { css } from 'styled-components/macro'
@@ -110,6 +111,7 @@ if(items===true){
               <Route path="/admin" element={<Admin />} />
               <Route path="/adminfeedback" element={<AdminFeedback />} />
               <Route path="/adminevent" element={<AdminEvent />} />
+              <Route path="/adminnews" element={<AdminNews />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
       </Router>
@@ -255,6 +257,7 @@ if(items===true){
               <Route path="/admin" element={<Admin />} />
               <Route path="/adminfeedback" element={<AdminFeedback />} />
               <Route path="/adminevent" element={<AdminEvent />} />
+              <Route path="/adminnews" element={<AdminNews />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
       </Router>
@@ -262,8 +265,6 @@ if(items===true){
     </div>
   );
 }
-
-
 
 };
 

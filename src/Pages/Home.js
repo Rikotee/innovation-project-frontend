@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import '../components/style.css'
 import EventsList from "../components/events";
+import NewsList from "../components/news";
 import HslWidget from "./HslWidget";
 import Paper from "@material-ui/core/Paper";
 import {FaRegBell} from "react-icons/fa";
 
 const Home = () => {
 
-  const events = useLaunches()
+  const events = useLaunchesEvents()
+  const news = useLaunchesNews()
 
    // State with list of all checked item
    const [checked, setChecked] = useState([]);
 
   // Add/Remove checked item from list
-  const handleCheck = (event) => {
+  const handleCheck= (event) => {
     var updatedList = [...checked];
       if (event.target.checked) {
         updatedList = [...checked, event.target.value];
@@ -33,13 +35,15 @@ const Home = () => {
     {id: 3, name: "HSL"},
   ];
 
-/*   const listItems = checked.map((widgetList)=>{
-    return <li>{widgetList}</li>;   
-  }); */
-
   const eventWidget = (checked) =>{
     if (checked.includes('Events')) {
       return <div><EventsList data={events} /></div>;  
+    }
+  };
+
+  const newsWidget = (checked) =>{
+    if (checked.includes('News')) {
+      return <div><NewsList data={news} /></div>;  
     }
   };
 
@@ -69,15 +73,17 @@ const Home = () => {
 <Paper style={{maxHeight: 490 , overflow: 'auto', backgroundColor: 'rgb(28,69,152)'}}>
     <ul> {eventWidget(checked)} </ul>
 </Paper>
-{/*       <div>
-        <EventsList data={events} />
-      </div> */}
+
+<Paper style={{maxHeight: 490 , overflow: 'auto', backgroundColor: 'rgb(28,69,152)'}}>
+    <ul> {newsWidget(checked)} </ul>
+</Paper>
+
     <ul> {hsltWidget(checked)} </ul>
     </div>
   );
 };
 
-const useLaunches = () => {
+const useLaunchesEvents = () => {
   const [events, setEvents] = React.useState([]);
 
   React.useEffect(() => {
@@ -106,6 +112,37 @@ const useLaunches = () => {
   }, []);
 
   return events;
+};
+
+const useLaunchesNews = () => {
+  const [news, setNews] = React.useState([]);
+
+  React.useEffect(() => {
+    var token = localStorage.getItem("token");
+    const myObj = JSON.parse(token);
+
+    fetch("http://localhost:3000/graphql", {
+    method: "POST",
+    headers: {Authorization: `Bearer ${myObj.token}`,
+    "Content-Type": "application/json" },
+    body: JSON.stringify({ query: 
+      `
+      {
+        news {
+          id
+          subject
+          new
+          date
+        }
+      }
+      `})
+    })
+    .then((response) => response.json())
+/*       .then((data) => console.log(data)); */
+    .then(data => setNews(data.data.news))
+  }, []);
+
+  return news;
 };
 
 export default Home;

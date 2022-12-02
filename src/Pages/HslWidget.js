@@ -17,8 +17,6 @@ function HslWidget() {
     window.location.reload(false);
   } */
 
-
-
   const results = () => {
 
 let i = 0;
