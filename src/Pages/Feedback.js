@@ -57,10 +57,10 @@ const Feedback = () => {
     if(checked===true){
           emailjs
     .sendForm(
-      process.env.REACT_APP_EMAILJS_SERVICE_ID,
-      process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+      "service_zu1bwg8",
+      "template_yu0sc8v",
       form.current,
-      process.env.REACT_APP_EMAILJS_USER_ID
+      "aIR9zKHg7S8xEqWPi"
     )
     .then(
       (result) => {
