@@ -64,6 +64,7 @@ const Registration = () => {
  const registerUser = async (credentials) => {
    const username = credentials.username
    const password = credentials.password
+   
   const options = {
     method: 'POST',
     headers: {
@@ -72,9 +73,9 @@ const Registration = () => {
     },
     body: JSON.stringify({ query: 
       `
-      mutation RegisterUser {
-        registerUser(username: "${username}", password: "${password}") {
-          id
+      mutation Mutation {
+        createUser(username: "${username}", password: "${password}") {
+          _id
           username
         }
       }
@@ -83,10 +84,10 @@ const Registration = () => {
     }),
   };
   try {
-    const response = await fetch("http://localhost:3000/graphql", options);
+    const response = await fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", options);
     const json = await response.json();
     // console.log(json)
-    if(json.data.registerUser == null){
+    if(json.data.createUser == null){
       toast("Try another username or password!")
     }else{
       toast("Your username is now registered!")

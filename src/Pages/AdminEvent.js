@@ -49,9 +49,9 @@ const AdminEvent = () => {
 
     const [list=events, setList] = React.useState()
 
-    function removeList(id) {
-      deleteEvent(id)
-      const newList = list.filter((l) => l.id !== id)
+    function removeList(_id) {
+      deleteEvent(_id)
+      const newList = list.filter((l) => l._id !== _id)
       setList(newList);
     }
 
