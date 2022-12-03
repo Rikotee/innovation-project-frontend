@@ -90,25 +90,25 @@ const useLaunchesEvents = () => {
     var token = localStorage.getItem("token");
     const myObj = JSON.parse(token);
 
-    fetch("http://localhost:3000/graphql", {
+    fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", {
     method: "POST",
     headers: {Authorization: `Bearer ${myObj.token}`,
     "Content-Type": "application/json" },
     body: JSON.stringify({ query: 
       `
       {
-        events {
-          id
-          subject
-          event
-          date
+        getEvents {
+        _id
+        subject
+        event
+        date
         }
       }
       `})
     })
     .then((response) => response.json())
 /*       .then((data) => console.log(data)); */
-    .then(data => setEvents(data.data.events))
+    .then(data => setEvents(data.data.getEvents))
   }, []);
 
   return events;

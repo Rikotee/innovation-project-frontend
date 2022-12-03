@@ -133,16 +133,16 @@ const Feedback = () => {
     },
     body: JSON.stringify({ query: 
       `
-      mutation addFeedback {
-        addFeedback(subject: "${subject}", feedback: "${feedbackTxt}", email: "${email}", date: "${date}") {
-          id
+      mutation CreateFeedback {
+        createFeedback(subject: "${subject}", feedback: "${feedbackTxt}", email: "${email}", date: "${date}") {
+        _id  
         }
       }
       `
     }),
   };
   try {
-    const response = await fetch("http://localhost:3000/graphql", options);
+    const response = await fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", options);
     const json = await response.json();
     if(json == null){
       toast("Something went wrong!")
