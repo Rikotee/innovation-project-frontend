@@ -11,7 +11,7 @@ const NewsList = (props) => {
         props.data.map (content =>(
           <li>
             <span><strong>Headline:</strong> {content.subject}</span>
-            <span><strong>News:</strong> {content.new}</span>
+            <span><strong>News:</strong> {content.news}</span>
             <span><strong>Date:</strong> {content.date}</span>
           </li>
         ))

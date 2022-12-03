@@ -121,25 +121,25 @@ const useLaunchesNews = () => {
     var token = localStorage.getItem("token");
     const myObj = JSON.parse(token);
 
-    fetch("http://localhost:3000/graphql", {
+    fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", {
     method: "POST",
     headers: {Authorization: `Bearer ${myObj.token}`,
     "Content-Type": "application/json" },
     body: JSON.stringify({ query: 
       `
       {
-        news {
-          id
-          subject
-          new
+        getNews {
+          _id
           date
+          news
+          subject
         }
       }
       `})
     })
     .then((response) => response.json())
 /*       .then((data) => console.log(data)); */
-    .then(data => setNews(data.data.news))
+    .then(data => setNews(data.data.getNews))
   }, []);
 
   return news;

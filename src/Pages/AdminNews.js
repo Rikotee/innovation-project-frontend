@@ -49,9 +49,9 @@ const AdminNews = () => {
 
     const [list=news, setList] = React.useState()
 
-    function removeList(id) {
-      deleteNews(id)
-      const newList = list.filter((l) => l.id !== id)
+    function removeList(_id) {
+      deleteNews(_id)
+      const newList = list.filter((l) => l._id !== _id)
       setList(newList);
     }
 
@@ -100,7 +100,7 @@ const AdminNews = () => {
             <span><strong>Subject:</strong> {content.subject}</span>
             <span><strong>News:</strong> {content.news}</span>
             <span><strong>Date:</strong> {content.date}</span>
-                <span onClick={()=> removeList(content.id)} style={{marginLeft: "10px", color: "red", cursor: "pointer"}}>x</span>
+                <span onClick={()=> removeList(content._id)} style={{marginLeft: "10px", color: "red", cursor: "pointer"}}>x</span>
               </li>
             ))
           }
@@ -128,16 +128,16 @@ const addNews = async (credentials) => {
      },
      body: JSON.stringify({ query: 
        `
-       mutation AddNews {
-        addNews(subject: "${subject}", new: "${newsTxt}", date: "${date}") {
-           id
-         }
-       }
+       mutation Mutation {
+        createNew(subject: "${subject}", news: "${newsTxt}", date: "${date}") {
+        _id  
+        }
+      }
        `
      }),
    };
    try {
-     const response = await fetch("http://localhost:3000/graphql", options);
+     const response = await fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", options);
      const json = await response.json();
      if(json == null){
        toast("Something went wrong!")
@@ -185,25 +185,25 @@ const addNews = async (credentials) => {
       var token = localStorage.getItem("token");
       const myObj = JSON.parse(token);
 
-      fetch("http://localhost:3000/graphql", {
+      fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", {
       method: "POST",
       headers: {Authorization: `Bearer ${myObj.token}`,
       "Content-Type": "application/json" },
       body: JSON.stringify({ query: 
         `
         {
-          news {
-              id
-              subject
-              new
-              date
+          getNews {
+            _id
+            date
+            news
+            subject
           }
         }
         `})
       })
       .then((response) => response.json())
 /*       .then((data) => console.log(data)); */
-      .then(data => setNews(data.data.news))
+      .then(data => setNews(data.data.getNews))
     }, []);
 
     return news;
