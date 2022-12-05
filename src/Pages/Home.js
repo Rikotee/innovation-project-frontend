@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import '../components/style.css'
 import EventsList from "../components/events";
 import NewsList from "../components/news";
@@ -6,6 +6,7 @@ import HslWidget from "./HslWidget";
 import Paper from "@material-ui/core/Paper";
 import {FaRegBell} from "react-icons/fa";
 import {Hidden} from "@material-ui/core";
+import logo from '../components/image/mycampus.png';
 
 const Home = () => {
 
@@ -58,7 +59,7 @@ const Home = () => {
   const [changeHeight, setChangeHeight] = useState('420');
 
   const handleClick = () => {
-    // 👇️ toggle
+    // toggle
     setIsActive(current => !current);
     setButtonText(current => !current);
     setChangeHeight(current => !current);
@@ -66,7 +67,11 @@ const Home = () => {
 
   return (
     <div className="app">
-<h1>My Campus</h1>
+      <div>
+      <image>
+      <img src={logo}/>
+      </image>
+      </div>
       <button class="editWidgets"
         onClick={handleClick}
       >
