@@ -1,6 +1,7 @@
 import React from "react";
 import '../components/style.css'
-import car from '../components/image/car.png';
+import '../App.css'
+import parking from '../components/image/parkingMobile.png';
 
 const Parking = () => {
 
@@ -8,7 +9,7 @@ const Parking = () => {
         <div>
             <h1>Parking</h1>
           <image>
-            <img src={car}  alt="Logo" />
+            <img className="parkingImg" src={parking}/>
           </image>
         </div>
     )

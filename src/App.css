@@ -50,12 +50,19 @@ input{
   font-size: 1em;
 }
 
+.parkingImg, .restaurantImg, .share {
+  height: 23.33rem;
+}
+
 /* bottom navigation */
 @media only screen and (max-width: 600px) {
   body {
     background-color: rgb(28, 69, 152);
   }
-  
+  .parkingImg, .restaurantImg, .share{
+    width: 88%;
+    height: auto;
+  }
   .navbarMenu {
     background-color: rgb(28, 69, 152);
     padding: 0.1rem;

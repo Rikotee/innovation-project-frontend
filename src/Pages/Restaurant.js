@@ -1,6 +1,7 @@
 import React from 'react'
 import '../components/style.css'
-import res from '../components/image/res.png';
+import '../App.css'
+import res from '../components/image/restaurant.png';
 
 const Restaurant = () => {
 
@@ -9,7 +10,7 @@ const Restaurant = () => {
     <div>
         <h1>Restaurant</h1>
       <image>
-        <img src={res}  alt="Logo" />
+      <img className="restaurantImg" src={res}/>
       </image>
     </div>
   );

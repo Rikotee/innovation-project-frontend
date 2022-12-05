@@ -19,7 +19,7 @@ const NewsList = (props) => {
 						{content.new}
 					</p>
           <p class="more">
-						<p>tap for more</p>
+						tap for more
 					</p>
           </li>
           </div>

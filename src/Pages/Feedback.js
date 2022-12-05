@@ -88,7 +88,7 @@ const Feedback = () => {
           <input name="message" type="text" required="required" onChange={e => setFeedbackTxt(e.target.value)} maxLength={2000}/>
         </label>
 
-        <label>
+        <label className="email">
           <p>Email</p>
           <input name="user_email" type="text" value={myObj.username} onChange={e => setFeedbackTxt(e.target.value)} maxLength={2000}/>
         </label>
