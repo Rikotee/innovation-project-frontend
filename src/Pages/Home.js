@@ -1,5 +1,6 @@
 import React, { useState, useEffect  } from "react";
 import '../components/style.css'
+import '../App.css'
 import EventsList from "../components/events";
 import NewsList from "../components/news";
 import HslWidget from "./HslWidget";
@@ -67,9 +68,9 @@ const Home = () => {
 
   return (
     <div className="app">
-      <div>
+      <div width='100%'>
       <image>
-      <img src={logo}/>
+        <img className="logoImg" src={logo}/>
       </image>
       </div>
       <button class="editWidgets"
