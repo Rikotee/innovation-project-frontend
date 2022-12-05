@@ -224,14 +224,14 @@ const deleteNews = async (id) => {
        `
        mutation DeleteNews {
         deleteNews(id: "${id}") {
-        id  
+        _id  
         }
       }
        `
      }),
    };
    try {
-     fetch("http://localhost:3000/graphql", options);
+     fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", options);
    } catch (e) {
      console.log(e);
      return false;
