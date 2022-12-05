@@ -5,6 +5,7 @@ import NewsList from "../components/news";
 import HslWidget from "./HslWidget";
 import Paper from "@material-ui/core/Paper";
 import {FaRegBell} from "react-icons/fa";
+import {Hidden} from "@material-ui/core";
 
 const Home = () => {
 
@@ -40,7 +41,6 @@ const Home = () => {
       return <div><EventsList data={events} /></div>;  
     }
   };
-
   const newsWidget = (checked) =>{
     if (checked.includes('News')) {
       return <div><NewsList data={news} /></div>;  
@@ -52,11 +52,29 @@ const Home = () => {
       return <HslWidget></HslWidget>;  
     }
   };
- 
+  
+  const [isActive, setIsActive] = useState(false);
+  const [buttonText, setButtonText] = useState('Add widgets');
+  const [changeHeight, setChangeHeight] = useState('420');
+
+  const handleClick = () => {
+    // 👇️ toggle
+    setIsActive(current => !current);
+    setButtonText(current => !current);
+    setChangeHeight(current => !current);
+  };
+
   return (
     <div className="app">
 <h1>My Campus</h1>
-<div className="checkList">
+      <button class="editWidgets"
+        onClick={handleClick}
+      >
+        {buttonText ? 'Edit Widgets' : 'Done'}
+      </button>
+      <div className="checkList" style={{
+          display: isActive ? '' : 'none',
+        }}>
     <div className="title">Your WidgetList:</div>
     <div className="list-container">
       {checkList.map((item, index) => (
@@ -70,11 +88,11 @@ const Home = () => {
   </div>
 
 {/*      <ul> {listItems} </ul> */}
-<Paper style={{maxHeight: 490 , overflow: 'auto', backgroundColor: 'rgb(28,69,152)'}}>
+<Paper style={{maxHeight: changeHeight ? 540 : 420 , overflow: 'auto', backgroundColor: 'rgb(28,69,152)'}}>
     <ul> {eventWidget(checked)} </ul>
 </Paper>
 
-<Paper style={{maxHeight: 490 , overflow: 'auto', backgroundColor: 'rgb(28,69,152)'}}>
+<Paper style={{maxHeight: changeHeight ? 540 : 420 , overflow: 'auto', backgroundColor: 'rgb(28,69,152)'}}>
     <ul> {newsWidget(checked)} </ul>
 </Paper>
 

@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 toast.configure()
 
 const Intro = styled.div`
-  margin-top: 2em;
   text-align: center;
 `;
 
@@ -76,12 +75,12 @@ const AdminEvent = () => {
       <h1>Create Event</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          <p>Subject</p>
+          <p>Event</p>
           <input type="text" required="required" onChange={u => setSubject(u.target.value)} maxLength={50}/>
         </label>
 
         <label>
-          <p>Event</p>
+          <p>Description</p>
           <input type="text" required="required" onChange={e => setEventTxt(e.target.value)} maxLength={2000}/>
         </label>
 
