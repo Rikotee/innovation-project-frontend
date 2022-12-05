@@ -29,6 +29,7 @@ const AdminEvent = () => {
   
     const [subject, setSubject] = useState();
     const [eventTxt, setEventTxt] = useState();
+    const [eventDate, setEventDate] = useState();
 
     const current = new Date();
     const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
@@ -38,7 +39,8 @@ const AdminEvent = () => {
       await addEvent({
         subject,
         eventTxt,
-        date
+        date,
+        eventDate
       });
 
         setTimeout(() => {
@@ -83,6 +85,11 @@ const AdminEvent = () => {
           <input type="text" required="required" onChange={e => setEventTxt(e.target.value)} maxLength={2000}/>
         </label>
 
+        <label>
+          <p>Event date</p>
+          <input type="text" required="required" onChange={e => setEventDate(e.target.value)} maxLength={2000}/>
+        </label>
+
         <div>
           <Button type="submit" css={btnCSS}>Submit</Button>
         </div>
@@ -98,6 +105,7 @@ const AdminEvent = () => {
             list.map (content =>(
                 <li>
             <span><strong>Subject:</strong> {content.subject}</span>
+            <span><strong>Event date:</strong> {content.eventdate}</span>
             <span><strong>Event:</strong> {content.event}</span>
             <span><strong>Date:</strong> {content.date}</span>
                 <span onClick={()=> removeList(content._id)} style={{marginLeft: "10px", color: "red", cursor: "pointer"}}>x</span>
@@ -115,6 +123,7 @@ const addEvent = async (credentials) => {
     const subject = credentials.subject
     const eventTxt = credentials.eventTxt
     const date = credentials.date
+    const eventdate = credentials.eventDate
 
     var token = localStorage.getItem("token");
     const myObj = JSON.parse(token);
@@ -129,7 +138,7 @@ const addEvent = async (credentials) => {
      body: JSON.stringify({ query: 
        `
       mutation {
-        createEvent(subject: "${subject}", event: "${eventTxt}", date: "${date}") {
+        createEvent(subject: "${subject}", event: "${eventTxt}", date: "${date}", eventdate: "${eventdate}") {
         _id  
         }
       }
@@ -197,6 +206,7 @@ const addEvent = async (credentials) => {
           subject
           event
           date
+          eventdate
           }
         }
         `})

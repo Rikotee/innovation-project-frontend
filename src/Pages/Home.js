@@ -102,6 +102,7 @@ const useLaunchesEvents = () => {
         subject
         event
         date
+        eventdate
         }
       }
       `})
