@@ -179,7 +179,7 @@ if(items===true){
       },
       {
         target: '.btn-parking-mobile',
-        content: 'Locate your car using our parking feature',
+        content: 'See real time parking spot availability using our parking feature',
         disableBeacon: true
       },
       {

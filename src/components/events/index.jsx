@@ -19,7 +19,7 @@ const EventsList = (props) => {
 						{content.event}
 					</p>
           <p class="more">
-						<p>tap for more</p>
+						tap for more
 					</p>
           </li>
           </div>
