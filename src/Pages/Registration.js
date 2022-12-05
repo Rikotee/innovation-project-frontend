@@ -11,7 +11,20 @@ const Intro = styled.div`
 `;
 
 const btnCSS = css`
-    margin-top: 2em;
+border: 1px solid black;
+border-radius: 20px;
+padding: 4px 7px;
+margin-top: 10px;
+margin-right: 10px;
+-webkit-text-decoration: none;
+text-decoration: none;
+color: black;
+background-color: white;
+-webkit-transition: 0.3s;
+transition: 0.3s;
+font-size: 0,1em;
+cursor: pointer;
+outline: none;
 `;
 
 const Registration = () => {

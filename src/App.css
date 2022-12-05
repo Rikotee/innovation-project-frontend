@@ -53,6 +53,9 @@ input{
 .parkingImg, .restaurantImg, .share {
   height: 23.33rem;
 }
+.logoImg {
+  height: 120px;
+}
 
 /* bottom navigation */
 @media only screen and (max-width: 600px) {
@@ -116,5 +119,8 @@ input{
   
   .adminButtons {
     width: 80%;
+  }
+  .logoImg {
+    height: 90px;
   }
 }

@@ -130,27 +130,27 @@ if(items===true){
           steps={ [
       {
         target: '.btn-home',
-        content: 'Here you can find all widgets and interact with them',
+        content: 'Here you can find all widgets and interact with them.',
         disableBeacon: true
       },
       {
         target: '.btn-parking',
-        content: 'Locate your car using our parking feature',
+        content: 'See real time parking spot availability using our parking feature.',
         disableBeacon: true
       },
       {
         target: '.btn-restaurant',
-        content: 'Find out the best places to eat near you with live traffic visibility',
+        content: 'Find out the best places to eat near you with live traffic visibility.',
         disableBeacon: true
       },
       {
         target: '.menu-bars',
-        content: 'This is the menu where all the other features lie',
+        content: 'This is the menu where all the other features lie.',
         disableBeacon: true
       },
       {
-        target: '.not-checked-item',
-        content: 'By checking boxes you can decide the content for your home screen',
+        target: '.editWidgets',
+        content: 'Add or remove widgets from your homescreen.',
         disableBeacon: true
       },
     ]}
@@ -174,27 +174,27 @@ if(items===true){
           steps={ [
       {
         target: '.btn-home-mobile',
-        content: 'Here you can find all widgets and interact with them',
+        content: 'Here you can find all widgets and interact with them.',
         disableBeacon: true
       },
       {
         target: '.btn-parking-mobile',
-        content: 'See real time parking spot availability using our parking feature',
+        content: 'See real time parking spot availability using our parking feature.',
         disableBeacon: true
       },
       {
         target: '.btn-restaurant-mobile',
-        content: 'Find out the best places to eat near you with live traffic visibility',
+        content: 'Find out the best places to eat near you with live traffic visibility.',
         disableBeacon: true
       },
       {
         target: '.menu-bars',
-        content: 'This is the menu where all the other features lie',
+        content: 'This is the menu where all the other features lie.',
         disableBeacon: true
       },
       {
-        target: '.not-checked-item',
-        content: 'By checking boxes you can decide the content for your home screen',
+        target: '.editWidgets',
+        content: 'Add or remove widgets from your homescreen.',
         disableBeacon: true
       },
     ]}

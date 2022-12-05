@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import '../components/style.css'
+import '../App.css'
 import EventsList from "../components/events";
 import NewsList from "../components/news";
 import HslWidget from "./HslWidget";
 import Paper from "@material-ui/core/Paper";
 import {FaRegBell} from "react-icons/fa";
 import {Hidden} from "@material-ui/core";
+import logo from '../components/image/mycampus.png';
 
 const Home = () => {
 
@@ -66,7 +68,11 @@ const Home = () => {
 
   return (
     <div className="app">
-<h1>My Campus</h1>
+      <div width='100%'>
+      <image>
+        <img className="logoImg" src={logo}/>
+      </image>
+      </div>
       <button class="editWidgets"
         onClick={handleClick}
       >
