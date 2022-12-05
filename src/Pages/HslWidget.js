@@ -31,17 +31,18 @@ while (i < nearStationsAndDepertures[0].data.nearest.edges.length) {
               distance: nearStationsAndDepertures[0].data.nearest.edges[i].node.distance,
               stoptime: nearStationsAndDepertures[0].data.nearest.edges[i].node.place.stoptimes[0].scheduledDeparture,
               shortname: nearStationsAndDepertures[0].data.nearest.edges[i].node.place.stoptimes[0].trip.route.shortName,
-              longname: nearStationsAndDepertures[0].data.nearest.edges[i].node.place.stoptimes[0].trip.route.longName,
+              /* longname: nearStationsAndDepertures[0].data.nearest.edges[i].node.place.stoptimes[0].trip.route.longName, */
               headsign: nearStationsAndDepertures[0].data.nearest.edges[i].node.place.stoptimes[0].headsign,
               date: nearStationsAndDepertures[0].data.nearest.edges[i].node.place.stoptimes[0].serviceDay,
 
             })
   i++;
 }
+
+stations.sort((a, b) => a.stoptime - b.stoptime);
+
             setStopId('t')
 }
-
-
 
   const nearestStopInfo = () => {
 
@@ -51,11 +52,7 @@ while (i < nearStationsAndDepertures[0].data.nearest.edges.length) {
       }, 1000);
   }
 
-
   nearestStopInfo();
-
-  console.log(nearStationsAndDepertures)
-
 
   return (
     <div className="App">
@@ -66,21 +63,14 @@ while (i < nearStationsAndDepertures[0].data.nearest.edges.length) {
 <ul className='no-bullets'>
         {stations.map(stop => (
           <li key={stop.id}>
-            <p>distance: {stop.distance}m</p>
-						<p>{stop.name}</p>
+            <p>{stop.distance}m to {stop.name}</p>
 						<p>{stop.shortname} - {stop.headsign}</p>
-            <p>{stop.longname}</p>
+{/*             <p>{stop.longname}</p> */}
 						<p>{secondsToTime(stop.stoptime)}</p>
             <p> ---------- </p>
             </li>
         ))}
       </ul> 
-
-
-{/*       <ul> {listItems} </ul> */}
-
-
-
 
       </header>
     </div>
@@ -93,6 +83,7 @@ const secondsToTime = (s) => {
   date.setSeconds(s); // specify value for SECONDS
   var timeString = date.toISOString().substring(11, 19);
 /*   console.log(timeString) */
+
   return timeString
 };
 
