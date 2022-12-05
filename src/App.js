@@ -23,21 +23,12 @@ import Joyride from 'react-joyride';
 import { useMediaPredicate } from "react-media-hook";
 
 const Intro = styled.div`
-  margin-top: 1em;
   text-align: center;
 `;
 
 const LogOut = styled.div`
   text-align: right;
 `;
-
-/* const btnCSS = css`
-@media only screen and (max-width: 600px) {
-  body {
-    margin-top: 10em;
-  }
-}
-`; */
 
 const App = () => {
   const biggerThan600 = useMediaPredicate("(min-width: 600px)");

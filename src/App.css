@@ -2,7 +2,7 @@ body {
   background-color: rgb(28, 69, 152);
 }
 
-.title, h1, h2, h3, p, label, .listcontainer, .checked-item, .not-checked-item {
+.title, h1, h2, label, .listcontainer, p, .checked-item, .not-checked-item {
   color: white;
   margin-top: 10px;
 }
@@ -39,6 +39,15 @@ input{
 .app {
   text-align: center;
   padding-bottom: 35%;
+}
+.editWidgets{
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 5px;
+  text-decoration: none;
+  color: black;
+  font-size: 1em;
 }
 
 /* bottom navigation */

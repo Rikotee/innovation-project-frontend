@@ -8,7 +8,6 @@ import emailjs from "@emailjs/browser";
 toast.configure()
 
 const Intro = styled.div`
-  margin-top: 2em;
   text-align: center;
 `;
 

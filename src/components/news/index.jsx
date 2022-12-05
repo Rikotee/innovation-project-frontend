@@ -9,11 +9,20 @@ const NewsList = (props) => {
     <ul className="feedback-list">
       {
         props.data.map (content =>(
+          <div  className='news'>
           <li>
-            <span><strong>Headline:</strong> {content.subject}</span>
-            <span><strong>News:</strong> {content.new}</span>
-            <span><strong>Date:</strong> {content.date}</span>
+          <div class="cat">{content.date}</div>
+            <div class="title">
+						<h3>{content.subject}</h3>
+					</div>
+					<p class="description">
+						{content.new}
+					</p>
+          <p class="more">
+						<p>tap for more</p>
+					</p>
           </li>
+          </div>
         ))
       }
     </ul>
