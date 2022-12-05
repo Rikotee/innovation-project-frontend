@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import '../components/style.css'
 import '../App.css'
 import EventsList from "../components/events";
@@ -60,7 +60,7 @@ const Home = () => {
   const [changeHeight, setChangeHeight] = useState('420');
 
   const handleClick = () => {
-    // 👇️ toggle
+    // toggle
     setIsActive(current => !current);
     setButtonText(current => !current);
     setChangeHeight(current => !current);
@@ -114,25 +114,26 @@ const useLaunchesEvents = () => {
     var token = localStorage.getItem("token");
     const myObj = JSON.parse(token);
 
-    fetch("http://localhost:3000/graphql", {
+    fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", {
     method: "POST",
     headers: {Authorization: `Bearer ${myObj.token}`,
     "Content-Type": "application/json" },
     body: JSON.stringify({ query: 
       `
       {
-        events {
-          id
-          subject
-          event
-          date
+        getEvents {
+        _id
+        subject
+        event
+        date
+        eventdate
         }
       }
       `})
     })
     .then((response) => response.json())
 /*       .then((data) => console.log(data)); */
-    .then(data => setEvents(data.data.events))
+    .then(data => setEvents(data.data.getEvents))
   }, []);
 
   return events;
@@ -145,25 +146,25 @@ const useLaunchesNews = () => {
     var token = localStorage.getItem("token");
     const myObj = JSON.parse(token);
 
-    fetch("http://localhost:3000/graphql", {
+    fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", {
     method: "POST",
     headers: {Authorization: `Bearer ${myObj.token}`,
     "Content-Type": "application/json" },
     body: JSON.stringify({ query: 
       `
       {
-        news {
-          id
-          subject
-          new
+        getNews {
+          _id
           date
+          news
+          subject
         }
       }
       `})
     })
     .then((response) => response.json())
 /*       .then((data) => console.log(data)); */
-    .then(data => setNews(data.data.news))
+    .then(data => setNews(data.data.getNews))
   }, []);
 
   return news;

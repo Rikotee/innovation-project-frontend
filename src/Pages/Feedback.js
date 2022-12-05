@@ -56,10 +56,10 @@ const Feedback = () => {
     if(checked===true){
           emailjs
     .sendForm(
-      process.env.REACT_APP_EMAILJS_SERVICE_ID,
-      process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+      "service_zu1bwg8",
+      "template_yu0sc8v",
       form.current,
-      process.env.REACT_APP_EMAILJS_USER_ID
+      "aIR9zKHg7S8xEqWPi"
     )
     .then(
       (result) => {
@@ -132,16 +132,16 @@ const Feedback = () => {
     },
     body: JSON.stringify({ query: 
       `
-      mutation addFeedback {
-        addFeedback(subject: "${subject}", feedback: "${feedbackTxt}", email: "${email}", date: "${date}") {
-          id
+      mutation CreateFeedback {
+        createFeedback(subject: "${subject}", feedback: "${feedbackTxt}", email: "${email}", date: "${date}") {
+        _id  
         }
       }
       `
     }),
   };
   try {
-    const response = await fetch("http://localhost:3000/graphql", options);
+    const response = await fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", options);
     const json = await response.json();
     if(json == null){
       toast("Something went wrong!")

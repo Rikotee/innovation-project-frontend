@@ -15,9 +15,9 @@ const AdminFeedback = () => {
 
   const [list=feedbacks, setList] = React.useState()
 
-  function removeList(id) {
-    deleteFeedback(id)
-    const newList = list.filter((l) => l.id !== id)
+  function removeList(_id) {
+    deleteFeedback(_id)
+    const newList = list.filter((l) => l._id !== _id)
     setList(newList);
   }
 
@@ -47,7 +47,7 @@ const AdminFeedback = () => {
                 <span><strong>Feedback:</strong> {content.feedback}</span>
                 <span><strong>Email:</strong> {content.email}</span>
                 <span><strong>Date:</strong> {content.date}</span>
-                <span onClick={()=> removeList(content.id)} style={{marginLeft: "10px", color: "red", cursor: "pointer"}}>x</span>
+                <span onClick={()=> removeList(content._id)} style={{marginLeft: "10px", color: "red", cursor: "pointer"}}>x</span>
               </li>
             ))
           }
@@ -66,26 +66,26 @@ const useLaunches = () => {
       var token = localStorage.getItem("token");
       const myObj = JSON.parse(token);
 
-      fetch("http://localhost:3000/graphql", {
+      fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", {
       method: "POST",
       headers: {Authorization: `Bearer ${myObj.token}`,
       "Content-Type": "application/json" },
       body: JSON.stringify({ query: 
         `
         {
-          feedbacks {
-              id
-              subject
-              feedback
-              email
-              date
+          getFeedbacks {
+            _id
+             subject
+            feedback
+            email
+            date
           }
         }
         `})
       })
       .then((response) => response.json())
 /*       .then((data) => console.log(data)); */
-      .then(data => setFeedbacks(data.data.feedbacks))
+      .then(data => setFeedbacks(data.data.getFeedbacks))
     }, []);
 
     return feedbacks;
@@ -131,16 +131,16 @@ const deleteFeedback = async (id) => {
    },
    body: JSON.stringify({ query: 
      `
-     mutation DeleteFeedback {
+    mutation DeleteFeedback {
       deleteFeedback(id: "${id}") {
-      id  
+        _id
       }
     }
      `
    }),
  };
  try {
-   fetch("http://localhost:3000/graphql", options);
+   fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", options);
  } catch (e) {
    console.log(e);
    return false;

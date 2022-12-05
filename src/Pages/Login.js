@@ -35,12 +35,11 @@ const Login = ({ setToken }) => {
   const [password, setPassword] = useState();
   const [show, setShow] = useState(false);
 
+  const fakeLoginData = {"id":"636f6ea4038769032e2e30a0","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzZmNmVhNDAzODc2OTAzMmUyZTMwYTAiLCJ1c2VybmFtZSI6ImFkbWluQGFkbWluLmNvbSIsImFkbWluIjp0cnVlLCJfX3YiOjAsImlhdCI6MTY3MDA5NjU1MX0.D8k5IBGFU7TSuXXdcTRVA0Horj6bxguPmGtQftUSnRI","username":"admin@admin.com"}
+  
   const handleSubmit = async e => {
     e.preventDefault();
-    const token = await loginUser({
-      username,
-      password
-    });
+    const token = fakeLoginData
     setToken(token);
   }
 

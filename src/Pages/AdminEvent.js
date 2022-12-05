@@ -28,6 +28,7 @@ const AdminEvent = () => {
   
     const [subject, setSubject] = useState();
     const [eventTxt, setEventTxt] = useState();
+    const [eventDate, setEventDate] = useState();
 
     const current = new Date();
     const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
@@ -37,10 +38,11 @@ const AdminEvent = () => {
       await addEvent({
         subject,
         eventTxt,
-        date
+        date,
+        eventDate
       });
 
-       setTimeout(() => {
+        setTimeout(() => {
         window.location.reload(false); 
         }, 1000);
       
@@ -48,9 +50,9 @@ const AdminEvent = () => {
 
     const [list=events, setList] = React.useState()
 
-    function removeList(id) {
-      deleteEvent(id)
-      const newList = list.filter((l) => l.id !== id)
+    function removeList(_id) {
+      deleteEvent(_id)
+      const newList = list.filter((l) => l._id !== _id)
       setList(newList);
     }
 
@@ -82,6 +84,11 @@ const AdminEvent = () => {
           <input type="text" required="required" onChange={e => setEventTxt(e.target.value)} maxLength={2000}/>
         </label>
 
+        <label>
+          <p>Event date</p>
+          <input type="text" required="required" onChange={e => setEventDate(e.target.value)} maxLength={2000}/>
+        </label>
+
         <div>
           <Button type="submit" css={btnCSS}>Submit</Button>
         </div>
@@ -97,9 +104,10 @@ const AdminEvent = () => {
             list.map (content =>(
                 <li>
             <span><strong>Subject:</strong> {content.subject}</span>
+            <span><strong>Event date:</strong> {content.eventdate}</span>
             <span><strong>Event:</strong> {content.event}</span>
             <span><strong>Date:</strong> {content.date}</span>
-                <span onClick={()=> removeList(content.id)} style={{marginLeft: "10px", color: "red", cursor: "pointer"}}>x</span>
+                <span onClick={()=> removeList(content._id)} style={{marginLeft: "10px", color: "red", cursor: "pointer"}}>x</span>
               </li>
             ))
           }
@@ -114,6 +122,7 @@ const addEvent = async (credentials) => {
     const subject = credentials.subject
     const eventTxt = credentials.eventTxt
     const date = credentials.date
+    const eventdate = credentials.eventDate
 
     var token = localStorage.getItem("token");
     const myObj = JSON.parse(token);
@@ -127,22 +136,22 @@ const addEvent = async (credentials) => {
      },
      body: JSON.stringify({ query: 
        `
-       mutation AddEvent {
-        addEvent(subject: "${subject}", event: "${eventTxt}", date: "${date}") {
-           id
-         }
-       }
+      mutation {
+        createEvent(subject: "${subject}", event: "${eventTxt}", date: "${date}", eventdate: "${eventdate}") {
+        _id  
+        }
+      }
        `
      }),
    };
    try {
-     const response = await fetch("http://localhost:3000/graphql", options);
+     const response = await fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", options);
      const json = await response.json();
      if(json == null){
        toast("Something went wrong!")
      }else{
        toast("Event added!")
-       //console.log(json)
+       console.log(json)
      }
    } catch (e) {
      console.log(e);
@@ -184,25 +193,26 @@ const addEvent = async (credentials) => {
       var token = localStorage.getItem("token");
       const myObj = JSON.parse(token);
 
-      fetch("http://localhost:3000/graphql", {
+      fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", {
       method: "POST",
       headers: {Authorization: `Bearer ${myObj.token}`,
       "Content-Type": "application/json" },
       body: JSON.stringify({ query: 
         `
         {
-          events {
-              id
-              subject
-              event
-              date
+          getEvents {
+          _id
+          subject
+          event
+          date
+          eventdate
           }
         }
         `})
       })
       .then((response) => response.json())
 /*       .then((data) => console.log(data)); */
-      .then(data => setEvents(data.data.events))
+      .then(data => setEvents(data.data.getEvents))
     }, []);
 
     return events;
@@ -221,16 +231,16 @@ const deleteEvent = async (id) => {
      },
      body: JSON.stringify({ query: 
        `
-       mutation DeleteEvent {
+      mutation DeleteEvent {
         deleteEvent(id: "${id}") {
-        id  
+          _id
         }
       }
        `
      }),
    };
    try {
-     fetch("http://localhost:3000/graphql", options);
+     fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", options);
    } catch (e) {
      console.log(e);
      return false;
