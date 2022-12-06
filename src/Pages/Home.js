@@ -114,26 +114,26 @@ const useLaunchesEvents = () => {
     var token = localStorage.getItem("token");
     const myObj = JSON.parse(token);
 
-    fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", {
+    fetch("http://localhost:3000/graphql", {
     method: "POST",
     headers: {Authorization: `Bearer ${myObj.token}`,
     "Content-Type": "application/json" },
     body: JSON.stringify({ query: 
       `
       {
-        getEvents {
-        _id
-        subject
-        event
-        date
-        eventdate
+        events {
+          id
+          subject
+          event
+          date
+          eventdate
         }
       }
       `})
     })
     .then((response) => response.json())
 /*       .then((data) => console.log(data)); */
-    .then(data => setEvents(data.data.getEvents))
+    .then(data => setEvents(data.data.events))
   }, []);
 
   return events;
@@ -146,25 +146,25 @@ const useLaunchesNews = () => {
     var token = localStorage.getItem("token");
     const myObj = JSON.parse(token);
 
-    fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", {
+    fetch("http://localhost:3000/graphql", {
     method: "POST",
     headers: {Authorization: `Bearer ${myObj.token}`,
     "Content-Type": "application/json" },
     body: JSON.stringify({ query: 
       `
       {
-        getNews {
-          _id
-          date
-          news
+        news {
+          id
           subject
+          new
+          date
         }
       }
       `})
     })
     .then((response) => response.json())
 /*       .then((data) => console.log(data)); */
-    .then(data => setNews(data.data.getNews))
+    .then(data => setNews(data.data.news))
   }, []);
 
   return news;

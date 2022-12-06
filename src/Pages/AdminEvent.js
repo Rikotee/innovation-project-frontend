@@ -50,9 +50,9 @@ const AdminEvent = () => {
 
     const [list=events, setList] = React.useState()
 
-    function removeList(_id) {
-      deleteEvent(_id)
-      const newList = list.filter((l) => l._id !== _id)
+    function removeList(id) {
+      deleteEvent(id)
+      const newList = list.filter((l) => l.id !== id)
       setList(newList);
     }
 
@@ -107,7 +107,7 @@ const AdminEvent = () => {
             <span><strong>Event date:</strong> {content.eventdate}</span>
             <span><strong>Event:</strong> {content.event}</span>
             <span><strong>Date:</strong> {content.date}</span>
-                <span onClick={()=> removeList(content._id)} style={{marginLeft: "10px", color: "red", cursor: "pointer"}}>x</span>
+                <span onClick={()=> removeList(content.id)} style={{marginLeft: "10px", color: "red", cursor: "pointer"}}>x</span>
               </li>
             ))
           }
@@ -119,132 +119,132 @@ const AdminEvent = () => {
 };
 
 const addEvent = async (credentials) => {
-    const subject = credentials.subject
-    const eventTxt = credentials.eventTxt
-    const date = credentials.date
-    const eventdate = credentials.eventDate
+  const subject = credentials.subject
+  const eventTxt = credentials.eventTxt
+  const date = credentials.date
+  const eventdate = credentials.eventDate
 
+  var token = localStorage.getItem("token");
+  const myObj = JSON.parse(token);
+
+ const options = {
+   method: 'POST',
+   headers: {
+     Authorization: `Bearer ${myObj.token}`,
+     'Content-Type': 'application/json',
+     Accept: 'application/json',
+   },
+   body: JSON.stringify({ query: 
+     `
+     mutation AddEvent {
+      addEvent(subject: "${subject}", event: "${eventTxt}", date: "${date}", eventdate: "${eventdate}") {
+         id
+       }
+     }
+     `
+   }),
+ };
+ try {
+   const response = await fetch("http://localhost:3000/graphql", options);
+   const json = await response.json();
+   if(json == null){
+     toast("Something went wrong!")
+   }else{
+     toast("Event added!")
+     //console.log(json)
+   }
+ } catch (e) {
+   console.log(e);
+   return false;
+ }
+};
+
+const useLaunchesAdmin = () => {
+  const [events, setEvents] = React.useState([]);
+
+  React.useEffect(() => {
     var token = localStorage.getItem("token");
     const myObj = JSON.parse(token);
- 
-   const options = {
-     method: 'POST',
-     headers: {
-       Authorization: `Bearer ${myObj.token}`,
-       'Content-Type': 'application/json',
-       Accept: 'application/json',
-     },
-     body: JSON.stringify({ query: 
-       `
-      mutation {
-        createEvent(subject: "${subject}", event: "${eventTxt}", date: "${date}", eventdate: "${eventdate}") {
-        _id  
+
+    fetch("http://localhost:3000/graphql", {
+    method: "POST",
+    headers: {Authorization: `Bearer ${myObj.token}`,
+    "Content-Type": "application/json" },
+    body: JSON.stringify({ query: 
+      `
+      {
+      user(id: "${myObj.id}") {
+       admin
+      }
+     }
+      `})
+    })
+    .then((response) => response.json())
+    .then(data => setEvents(data.data.user.admin))
+  }, []);
+
+  return events;
+};
+
+const useLaunches = () => {
+  const [events, setEvents] = React.useState([]);
+
+  React.useEffect(() => {
+    var token = localStorage.getItem("token");
+    const myObj = JSON.parse(token);
+
+    fetch("http://localhost:3000/graphql", {
+    method: "POST",
+    headers: {Authorization: `Bearer ${myObj.token}`,
+    "Content-Type": "application/json" },
+    body: JSON.stringify({ query: 
+      `
+      {
+        events {
+            id
+            subject
+            event
+            date
+            eventdate
         }
       }
-       `
-     }),
-   };
-   try {
-     const response = await fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", options);
-     const json = await response.json();
-     if(json == null){
-       toast("Something went wrong!")
-     }else{
-       toast("Event added!")
-       console.log(json)
-     }
-   } catch (e) {
-     console.log(e);
-     return false;
-   }
- };
-
- const useLaunchesAdmin = () => {
-    const [events, setEvents] = React.useState([]);
-  
-    React.useEffect(() => {
-      var token = localStorage.getItem("token");
-      const myObj = JSON.parse(token);
-  
-      fetch("http://localhost:3000/graphql", {
-      method: "POST",
-      headers: {Authorization: `Bearer ${myObj.token}`,
-      "Content-Type": "application/json" },
-      body: JSON.stringify({ query: 
-        `
-        {
-        user(id: "${myObj.id}") {
-         admin
-        }
-       }
-        `})
-      })
-      .then((response) => response.json())
-      .then(data => setEvents(data.data.user.admin))
-    }, []);
-  
-    return events;
-  };
-
-  const useLaunches = () => {
-    const [events, setEvents] = React.useState([]);
-
-    React.useEffect(() => {
-      var token = localStorage.getItem("token");
-      const myObj = JSON.parse(token);
-
-      fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", {
-      method: "POST",
-      headers: {Authorization: `Bearer ${myObj.token}`,
-      "Content-Type": "application/json" },
-      body: JSON.stringify({ query: 
-        `
-        {
-          getEvents {
-          _id
-          subject
-          event
-          date
-          eventdate
-          }
-        }
-        `})
-      })
-      .then((response) => response.json())
+      `})
+    })
+    .then((response) => response.json())
 /*       .then((data) => console.log(data)); */
-      .then(data => setEvents(data.data.getEvents))
-    }, []);
+    .then(data => setEvents(data.data.events))
+  }, []);
 
-    return events;
+  return events;
 };
 
 const deleteEvent = async (id) => {
-    var token = localStorage.getItem("token");
-    const myObj = JSON.parse(token);
-  
-   const options = {
-     method: 'POST',
-     headers: {
-       Authorization: `Bearer ${myObj.token}`,
-       'Content-Type': 'application/json',
-       Accept: 'application/json',
-     },
-     body: JSON.stringify({ query: 
-       `
-      mutation DeleteEvent {
-        deleteEvent(id: "${id}") {
-          _id
-        }
+  var token = localStorage.getItem("token");
+  const myObj = JSON.parse(token);
+
+ const options = {
+   method: 'POST',
+   headers: {
+     Authorization: `Bearer ${myObj.token}`,
+     'Content-Type': 'application/json',
+     Accept: 'application/json',
+   },
+   body: JSON.stringify({ query: 
+     `
+     mutation DeleteEvent {
+      deleteEvent(id: "${id}") {
+      id  
       }
-       `
-     }),
-   };
-   try {
-     fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", options);
-   } catch (e) {
-     console.log(e);
-     return false;
-   }
-  };
+    }
+     `
+   }),
+ };
+ try {
+   fetch("http://localhost:3000/graphql", options);
+ } catch (e) {
+   console.log(e);
+   return false;
+ }
+};
 
 export default AdminEvent;

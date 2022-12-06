@@ -16,7 +16,7 @@ const NewsList = (props) => {
 						<h3>{content.subject}</h3>
 					</div>
 					<p class="description">
-						{content.news}
+						{content.new}
 					</p>
           <p class="more">
 						tap for more

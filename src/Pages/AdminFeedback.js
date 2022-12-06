@@ -15,9 +15,9 @@ const AdminFeedback = () => {
 
   const [list=feedbacks, setList] = React.useState()
 
-  function removeList(_id) {
-    deleteFeedback(_id)
-    const newList = list.filter((l) => l._id !== _id)
+  function removeList(id) {
+    deleteFeedback(id)
+    const newList = list.filter((l) => l.id !== id)
     setList(newList);
   }
 
@@ -47,7 +47,7 @@ const AdminFeedback = () => {
                 <span><strong>Feedback:</strong> {content.feedback}</span>
                 <span><strong>Email:</strong> {content.email}</span>
                 <span><strong>Date:</strong> {content.date}</span>
-                <span onClick={()=> removeList(content._id)} style={{marginLeft: "10px", color: "red", cursor: "pointer"}}>x</span>
+                <span onClick={()=> removeList(content.id)} style={{marginLeft: "10px", color: "red", cursor: "pointer"}}>x</span>
               </li>
             ))
           }
@@ -60,38 +60,6 @@ const AdminFeedback = () => {
 }
 
 const useLaunches = () => {
-    const [feedbacks, setFeedbacks] = React.useState([]);
-
-    React.useEffect(() => {
-      var token = localStorage.getItem("token");
-      const myObj = JSON.parse(token);
-
-      fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", {
-      method: "POST",
-      headers: {Authorization: `Bearer ${myObj.token}`,
-      "Content-Type": "application/json" },
-      body: JSON.stringify({ query: 
-        `
-        {
-          getFeedbacks {
-            _id
-             subject
-            feedback
-            email
-            date
-          }
-        }
-        `})
-      })
-      .then((response) => response.json())
-/*       .then((data) => console.log(data)); */
-      .then(data => setFeedbacks(data.data.getFeedbacks))
-    }, []);
-
-    return feedbacks;
-};
-
-const useLaunchesAdmin = () => {
   const [feedbacks, setFeedbacks] = React.useState([]);
 
   React.useEffect(() => {
@@ -105,46 +73,78 @@ const useLaunchesAdmin = () => {
     body: JSON.stringify({ query: 
       `
       {
-      user(id: "${myObj.id}") {
-       admin
+        feedbacks {
+            id
+            subject
+            feedback
+            email
+            date
+        }
       }
-     }
       `})
     })
     .then((response) => response.json())
-    .then(data => setFeedbacks(data.data.user.admin))
+/*       .then((data) => console.log(data)); */
+    .then(data => setFeedbacks(data.data.feedbacks))
   }, []);
 
   return feedbacks;
 };
 
-const deleteFeedback = async (id) => {
+const useLaunchesAdmin = () => {
+const [feedbacks, setFeedbacks] = React.useState([]);
+
+React.useEffect(() => {
   var token = localStorage.getItem("token");
   const myObj = JSON.parse(token);
 
- const options = {
-   method: 'POST',
-   headers: {
-     Authorization: `Bearer ${myObj.token}`,
-     'Content-Type': 'application/json',
-     Accept: 'application/json',
-   },
-   body: JSON.stringify({ query: 
-     `
-    mutation DeleteFeedback {
-      deleteFeedback(id: "${id}") {
-        _id
-      }
+  fetch("http://localhost:3000/graphql", {
+  method: "POST",
+  headers: {Authorization: `Bearer ${myObj.token}`,
+  "Content-Type": "application/json" },
+  body: JSON.stringify({ query: 
+    `
+    {
+    user(id: "${myObj.id}") {
+     admin
     }
-     `
-   }),
- };
- try {
-   fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", options);
- } catch (e) {
-   console.log(e);
-   return false;
- }
+   }
+    `})
+  })
+  .then((response) => response.json())
+  .then(data => setFeedbacks(data.data.user.admin))
+}, []);
+
+return feedbacks;
+};
+
+const deleteFeedback = async (id) => {
+var token = localStorage.getItem("token");
+const myObj = JSON.parse(token);
+
+const options = {
+ method: 'POST',
+ headers: {
+   Authorization: `Bearer ${myObj.token}`,
+   'Content-Type': 'application/json',
+   Accept: 'application/json',
+ },
+ body: JSON.stringify({ query: 
+   `
+   mutation DeleteFeedback {
+    deleteFeedback(id: "${id}") {
+    id  
+    }
+  }
+   `
+ }),
+};
+try {
+ fetch("http://localhost:3000/graphql", options);
+} catch (e) {
+ console.log(e);
+ return false;
+}
 
 };
 

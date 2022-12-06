@@ -56,10 +56,10 @@ const Feedback = () => {
     if(checked===true){
           emailjs
     .sendForm(
-      "service_zu1bwg8",
-      "template_yu0sc8v",
+      process.env.REACT_APP_EMAILJS_SERVICE_ID,
+      process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
       form.current,
-      "aIR9zKHg7S8xEqWPi"
+      process.env.REACT_APP_EMAILJS_USER_ID
     )
     .then(
       (result) => {
@@ -114,66 +114,66 @@ const Feedback = () => {
 }
 
 // This will send feedback to database
- const sendFeedback = async (credentials) => {
-   const subject = credentials.subject
-   const feedbackTxt = credentials.feedbackTxt
-   const email = credentials.email
-   const date = credentials.date
+const sendFeedback = async (credentials) => {
+  const subject = credentials.subject
+  const feedbackTxt = credentials.feedbackTxt
+  const email = credentials.email
+  const date = credentials.date
 
-   var token = localStorage.getItem("token");
-   const myObj = JSON.parse(token);
-
-  const options = {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${myObj.token}`,
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify({ query: 
-      `
-      mutation CreateFeedback {
-        createFeedback(subject: "${subject}", feedback: "${feedbackTxt}", email: "${email}", date: "${date}") {
-        _id  
-        }
-      }
-      `
-    }),
-  };
-  try {
-    const response = await fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", options);
-    const json = await response.json();
-    if(json == null){
-      toast("Something went wrong!")
-    }else{
-      toast("Feedback sent!")
-      //console.log(json)
-    }
-  } catch (e) {
-    console.log(e);
-    return false;
-  }
-};
-
-Feedback.propTypes = {
-  setToken: PropTypes.func
-}
-
-const Checkbox = ({ label, value, onChange }) => {
   var token = localStorage.getItem("token");
   const myObj = JSON.parse(token);
 
-  if(value === true){
-    email = myObj.username;
-  }else{
-    email = ""
-  }
-  return (
-    <label>
-      <input type="checkbox" checked={value} onChange={onChange} />
-      {label}
-    </label>
-  );
+ const options = {
+   method: 'POST',
+   headers: {
+     Authorization: `Bearer ${myObj.token}`,
+     'Content-Type': 'application/json',
+     Accept: 'application/json',
+   },
+   body: JSON.stringify({ query: 
+     `
+     mutation addFeedback {
+       addFeedback(subject: "${subject}", feedback: "${feedbackTxt}", email: "${email}", date: "${date}") {
+         id
+       }
+     }
+     `
+   }),
+ };
+ try {
+   const response = await fetch("http://localhost:3000/graphql", options);
+   const json = await response.json();
+   if(json == null){
+     toast("Something went wrong!")
+   }else{
+     toast("Feedback sent!")
+     //console.log(json)
+   }
+ } catch (e) {
+   console.log(e);
+   return false;
+ }
+};
+
+Feedback.propTypes = {
+ setToken: PropTypes.func
+}
+
+const Checkbox = ({ label, value, onChange }) => {
+ var token = localStorage.getItem("token");
+ const myObj = JSON.parse(token);
+
+ if(value === true){
+   email = myObj.username;
+ }else{
+   email = ""
+ }
+ return (
+   <label>
+     <input type="checkbox" checked={value} onChange={onChange} />
+     {label}
+   </label>
+ );
 };
 
 export default Feedback;
