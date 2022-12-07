@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import styled from 'styled-components/macro'
 import '../components/feedback-style.css'
 import { Link } from "react-router-dom";
@@ -84,7 +84,6 @@ const useLaunches = () => {
       `})
     })
     .then((response) => response.json())
-/*       .then((data) => console.log(data)); */
     .then(data => setFeedbacks(data.data.feedbacks))
   }, []);
 

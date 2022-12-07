@@ -1,21 +1,22 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState } from "react";
 import '../components/style.css'
 import '../App.css'
 import EventsList from "../components/events";
 import NewsList from "../components/news";
 import HslWidget from "./HslWidget";
 import Paper from "@material-ui/core/Paper";
-import {FaRegBell} from "react-icons/fa";
-import {Hidden} from "@material-ui/core";
 import logo from '../components/image/mycampus.png';
 
 const Home = () => {
 
   const events = useLaunchesEvents()
   const news = useLaunchesNews()
+  const [isActive, setIsActive] = useState(false);
+  const [buttonText, setButtonText] = useState('Add widgets');
+  const [changeHeight, setChangeHeight] = useState('420');
 
-   // State with list of all checked item
-   const [checked, setChecked] = useState([]);
+  // State with list of all checked item
+  const [checked, setChecked] = useState([]);
 
   // Add/Remove checked item from list
   const handleCheck= (event) => {
@@ -48,17 +49,12 @@ const Home = () => {
       return <div><NewsList data={news} /></div>;  
     }
   };
-
   const hsltWidget = (checked) =>{
     if (checked.includes('HSL')) {
       return <HslWidget></HslWidget>;  
     }
   };
   
-  const [isActive, setIsActive] = useState(false);
-  const [buttonText, setButtonText] = useState('Add widgets');
-  const [changeHeight, setChangeHeight] = useState('420');
-
   const handleClick = () => {
     // toggle
     setIsActive(current => !current);
@@ -70,7 +66,7 @@ const Home = () => {
     <div className="app">
       <div width='100%'>
       <image>
-        <img className="logoImg" src={logo}/>
+        <img className="logoImg" src={logo} alt="MyCampus logo"/>
       </image>
       </div>
       <button class="editWidgets"
@@ -93,7 +89,6 @@ const Home = () => {
 
   </div>
 
-{/*      <ul> {listItems} </ul> */}
 <Paper style={{maxHeight: changeHeight ? 540 : 420 , overflow: 'auto', backgroundColor: 'rgb(28,69,152)'}}>
     <ul> {eventWidget(checked)} </ul>
 </Paper>
@@ -132,7 +127,6 @@ const useLaunchesEvents = () => {
       `})
     })
     .then((response) => response.json())
-/*       .then((data) => console.log(data)); */
     .then(data => setEvents(data.data.events))
   }, []);
 
@@ -163,7 +157,6 @@ const useLaunchesNews = () => {
       `})
     })
     .then((response) => response.json())
-/*       .then((data) => console.log(data)); */
     .then(data => setNews(data.data.news))
   }, []);
 

@@ -99,7 +99,6 @@ const Registration = () => {
   try {
     const response = await fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", options);
     const json = await response.json();
-    // console.log(json)
     if(json.data.createUser == null){
       toast("Try another username or password!")
     }else{
@@ -110,6 +109,5 @@ const Registration = () => {
     return false;
   }
 };
-
 
 export default Registration;

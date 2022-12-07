@@ -5,7 +5,6 @@ import ErrorPage from './Pages/ErrorPage';
 import Login from './Pages/Login';
 import Parking from './Pages/Parking';
 import Restaurant from './Pages/Restaurant';
-import Menu from './Pages/Menu';
 import Share from './Pages/Share';
 import Feedback from './Pages/Feedback';
 import Admin from './Pages/Admin';
@@ -14,11 +13,9 @@ import AdminEvent from './Pages/AdminEvent';
 import AdminNews from './Pages/AdminNews';
 import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import useToken from './components/useToken';
-import styled, { css } from 'styled-components/macro'
-import Button from './components/Button';
+import styled from 'styled-components/macro'
 import LogOutButton from './components/LogOutButton';
 import Navbar from './components/Navbar';
-import * as FaIcons from 'react-icons/fa';
 import Joyride from 'react-joyride';
 import { useMediaPredicate } from "react-media-hook";
 
@@ -31,10 +28,9 @@ const LogOut = styled.div`
 `;
 
 const App = () => {
-  const biggerThan600 = useMediaPredicate("(min-width: 600px)");
-  const smallerThan600 = useMediaPredicate("(max-width: 600px)");
-  const { token, setToken } = useToken();
-
+    const biggerThan600 = useMediaPredicate("(min-width: 600px)");
+    const smallerThan600 = useMediaPredicate("(max-width: 600px)");
+    const { token, setToken } = useToken();
     const [items, setItems] = useState([]);
 
     // get item from local storage to check if onboarding is shown already
@@ -96,7 +92,6 @@ if(items===true){
               <Route path="/login" element={<Login />} />
               <Route path="/parking" element={<Parking />} />
               <Route path="/restaurant" element={<Restaurant />} />
-              <Route path="/menu" element={<Menu />} />
               <Route path="/feedback" element={<Feedback />} />
               <Route path="/share" element={<Share />} />
               <Route path="/admin" element={<Admin />} />
@@ -242,7 +237,6 @@ if(items===true){
               <Route path="/login" element={<Login />} />
               <Route path="/parking" element={<Parking />} />
               <Route path="/restaurant" element={<Restaurant />} />
-              <Route path="/menu" element={<Menu />} />
               <Route path="/feedback" element={<Feedback />} />
               <Route path="/share" element={<Share />} />
               <Route path="/admin" element={<Admin />} />

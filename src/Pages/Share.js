@@ -9,7 +9,7 @@ const Share = () => {
         <div>
             <h1>Share</h1>
           <image>
-            <img className="share" src={qr}  alt="Logo" />
+            <img className="share" src={qr} alt="qr code for sharing app" />
           </image>
         </div>
     )

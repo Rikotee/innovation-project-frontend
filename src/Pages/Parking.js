@@ -9,7 +9,7 @@ const Parking = () => {
         <div>
             <h1>Parking</h1>
           <image>
-            <img className="parkingImg" src={parking}/>
+            <img className="parkingImg" src={parking} alt="Parking spaces from above"/>
           </image>
         </div>
     )

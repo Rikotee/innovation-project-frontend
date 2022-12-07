@@ -98,7 +98,6 @@ const Login = ({ setToken }) => {
   try {
     const response = await fetch("http://localhost:3000/graphql", options);
     const json = await response.json();
-    //console.log(json.data.login)
     if(json.data.login == null){
       toast("check your username or password!")
       return json.data.login;

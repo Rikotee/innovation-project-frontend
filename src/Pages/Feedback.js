@@ -24,12 +24,14 @@ const addCSS = css`
 let email = ""
 
 const Feedback = () => {
+
   const form = useRef();
+  const [checked, setChecked] = React.useState(false);
+  const [subject, setSubject] = useState();
+  const [feedbackTxt, setFeedbackTxt] = useState();
 
   var token = localStorage.getItem("token");
   const myObj = JSON.parse(token);
-
-  const [checked, setChecked] = React.useState(false);
 
   const handleChange = () => {
     setChecked(!checked);
@@ -38,9 +40,6 @@ const Feedback = () => {
   const current = new Date();
   const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
 
-  const [subject, setSubject] = useState();
-  const [feedbackTxt, setFeedbackTxt] = useState();
-
   const handleSubmit = async e => {
     e.preventDefault();
     await sendFeedback({
@@ -48,7 +47,6 @@ const Feedback = () => {
       feedbackTxt,
       email,
       date
-
     });
 
     // This will send email notification if user 
@@ -147,7 +145,6 @@ const sendFeedback = async (credentials) => {
      toast("Something went wrong!")
    }else{
      toast("Feedback sent!")
-     //console.log(json)
    }
  } catch (e) {
    console.log(e);

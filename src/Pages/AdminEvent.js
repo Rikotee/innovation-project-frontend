@@ -1,6 +1,5 @@
 import '../components/style.css'
-import React, { useState, useRef } from "react";
-import PropTypes from 'prop-types';
+import React, { useState} from "react";
 import styled, { css } from 'styled-components/macro'
 import Button from "../components/Button";
 import {toast} from 'react-toastify';
@@ -22,10 +21,6 @@ const AdminEvent = () => {
 
     const adminCheck = useLaunchesAdmin()
     const events = useLaunches()
-
-    var token = localStorage.getItem("token");
-    const myObj = JSON.parse(token);
-  
     const [subject, setSubject] = useState();
     const [eventTxt, setEventTxt] = useState();
     const [eventDate, setEventDate] = useState();
@@ -151,7 +146,6 @@ const addEvent = async (credentials) => {
      toast("Something went wrong!")
    }else{
      toast("Event added!")
-     //console.log(json)
    }
  } catch (e) {
    console.log(e);
@@ -211,7 +205,6 @@ const useLaunches = () => {
       `})
     })
     .then((response) => response.json())
-/*       .then((data) => console.log(data)); */
     .then(data => setEvents(data.data.events))
   }, []);
 

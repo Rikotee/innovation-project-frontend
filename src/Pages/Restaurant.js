@@ -10,7 +10,7 @@ const Restaurant = () => {
     <div>
         <h1>Restaurant</h1>
       <image>
-      <img className="restaurantImg" src={res}/>
+      <img className="restaurantImg" src={res} alt="restaurants from above"/>
       </image>
     </div>
   );
