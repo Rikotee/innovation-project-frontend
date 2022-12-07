@@ -87,8 +87,8 @@ const Registration = () => {
     body: JSON.stringify({ query: 
       `
       mutation Mutation {
-        createUser(username: "${username}", password: "${password}") {
-          _id
+        registerUser(username: "${username}", password: "${password}") {
+          id
           username
         }
       }
@@ -97,9 +97,9 @@ const Registration = () => {
     }),
   };
   try {
-    const response = await fetch("https://friendly-maisie-hakalatoni87.koyeb.app/graphql", options);
+    const response = await fetch("http://localhost:3000/graphql", options);
     const json = await response.json();
-    if(json.data.createUser == null){
+    if(json.data.registerUser == null){
       toast("Try another username or password!")
     }else{
       toast("Your username is now registered!")
