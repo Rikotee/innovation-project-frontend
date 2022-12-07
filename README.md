@@ -16,6 +16,15 @@ MyCampus uses [EmailJS](https://www.emailjs.com/) for email notifications.
 
 * cd to cloned repository.
 
+### 'If you want use email notifications, you will need EmailJS account'
+
+* create new .env file to root directory and :
+```
+REACT_APP_EMAILJS_SERVICE_ID=your service id
+REACT_APP_EMAILJS_TEMPLATE_ID=template id
+REACT_APP_EMAILJS_USER_ID=user id
+```
+
 In the project directory, you can run:
 
 ### `npm start`
