@@ -25,9 +25,9 @@ In the project directory, you can run:
 
    Use of the application requires registration.
 
-   <img src="http://users.metropolia.fi/~teemutr/queryimg/MyCampusReg.jpg" width="250" />
+   <img src="http://users.metropolia.fi/~teemutr/queryimg/MyCampusReg.png" width="250" />
 
    After registration you can log in
 
-   <img src="http://users.metropolia.fi/~teemutr/queryimg/MyCampusLog.jpg" width="250" />
+   <img src="http://users.metropolia.fi/~teemutr/queryimg/MyCampusLog.png" width="250" />
 
