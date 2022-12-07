@@ -16,7 +16,7 @@ MyCampus uses [EmailJS](https://www.emailjs.com/) for email notifications.
 
 * cd to cloned repository.
 
-### 'If you want use email notifications, you will need EmailJS account'
+#### If you want use email notifications, you will need [EmailJS](https://www.emailjs.com/) account
 
 * create new .env file to root directory and :
 ```
