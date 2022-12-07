@@ -27,6 +27,9 @@ In the project directory, you can run:
 | ------------- | ------------- |
 | <img src="http://users.metropolia.fi/~teemutr/queryimg/MyCampusReg.png" width="250" />  | <img src="http://users.metropolia.fi/~teemutr/queryimg/MyCampusLog.png" width="250" />  |
 
+| Widget selector  | Widgets |
+| ------------- | ------------- |
+| <img src="http://users.metropolia.fi/~teemutr/queryimg/MyCampusWidg.png" width="250" />  | <img src="http://users.metropolia.fi/~teemutr/queryimg/MyCampusEvents.png" width="250" />  |
 
 
 
