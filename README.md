@@ -6,11 +6,14 @@ This is the Web-Frontend of the app MyCampus. The application also contains Back
 
 The application allows to create user and read events, news and give feedback.
 
-MyCampus uses: [EmailJS](https://www.emailjs.com/)
+MyCampus uses [EmailJS](https://www.emailjs.com/) for email notifications.
 
 ## Getting started
 
-* Clone the repository and run npm i in order to install the required packages.
+* Clone the repository and install the required packages.
+
+### `npm install`
+
 * cd to cloned repository.
 
 In the project directory, you can run:
@@ -22,9 +25,9 @@ In the project directory, you can run:
 
    Use of the application requires registration.
 
-<!--    <img src="http://users.metropolia.fi/~teemutr/queryimg/register2.jpg" width="250" />
+   <img src="http://users.metropolia.fi/~teemutr/queryimg/MyCampusReg.jpg" width="250" />
 
    After registration you can log in
 
-   <img src="http://users.metropolia.fi/~teemutr/queryimg/loginapp2.jpg" width="250" /> -->
+   <img src="http://users.metropolia.fi/~teemutr/queryimg/MyCampusLog.jpg" width="250" />
 
