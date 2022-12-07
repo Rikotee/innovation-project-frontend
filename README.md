@@ -23,11 +23,10 @@ In the project directory, you can run:
 ## Instructions
 1. Login and registration
 
-   Use of the application requires registration.
+| Use of the application requires registration.  | After registration you can log in |
+| ------------- | ------------- |
+| <img src="http://users.metropolia.fi/~teemutr/queryimg/MyCampusReg.png" width="250" />  | <img src="http://users.metropolia.fi/~teemutr/queryimg/MyCampusLog.png" width="250" />  |
 
-   <img src="http://users.metropolia.fi/~teemutr/queryimg/MyCampusReg.png" width="250" />
 
-   After registration you can log in
 
-   <img src="http://users.metropolia.fi/~teemutr/queryimg/MyCampusLog.png" width="250" />
 
