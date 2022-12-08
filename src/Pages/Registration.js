@@ -75,8 +75,6 @@ const Registration = () => {
 };
 
  const registerUser = async (credentials) => {
-   const username = credentials.username
-   const password = credentials.password
    
   const options = {
     method: 'POST',
@@ -87,7 +85,7 @@ const Registration = () => {
     body: JSON.stringify({ query: 
       `
       mutation Mutation {
-        createUser(username: "${username}", password: "${password}") {
+        createUser(username: "fakename", password: "fakepass") {
           _id
           username
         }
