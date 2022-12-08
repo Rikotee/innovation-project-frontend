@@ -54,7 +54,7 @@ const Home = () => {
       return <HslWidget></HslWidget>;  
     }
   };
-  
+  //Used to hide checkboxes when clicking done
   const handleClick = () => {
     // toggle
     setIsActive(current => !current);
@@ -88,7 +88,7 @@ const Home = () => {
     </div>
 
   </div>
-
+  
 <Paper style={{maxHeight: changeHeight ? 540 : 420 , overflow: 'auto', backgroundColor: 'rgb(28,69,152)'}}>
     <ul> {eventWidget(checked)} </ul>
 </Paper>

@@ -1,6 +1,7 @@
 import React from 'react'
 import '../feedback-style.css'
 
+/* The base for event widgets*/
 const EventsList = (props) => {
   return (
     <div>

@@ -3,6 +3,7 @@ import '../components/style.css'
 import '../App.css'
 import parking from '../components/image/parkingMobile.png';
 
+//Parking screen for demonstration of what the feature could look like
 const Parking = () => {
 
     return(

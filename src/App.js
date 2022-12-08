@@ -26,7 +26,7 @@ const Intro = styled.div`
 const LogOut = styled.div`
   text-align: right;
 `;
-
+//bigger- and smallerThan used for adding different styles for different screen sizes
 const App = () => {
     const biggerThan600 = useMediaPredicate("(min-width: 600px)");
     const smallerThan600 = useMediaPredicate("(max-width: 600px)");
@@ -122,7 +122,7 @@ if(items===true){
             color: "blue"
           }
       }}
-          steps={ [
+          steps={ /* Onboarding*/[
       {
         target: '.btn-home',
         content: 'Here you can find all widgets and interact with them.',
@@ -166,7 +166,7 @@ if(items===true){
             color: "blue"
           }
       }}
-          steps={ [
+          steps={ /* Onboarding*/[
       {
         target: '.btn-home-mobile',
         content: 'Here you can find all widgets and interact with them.',

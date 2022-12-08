@@ -3,6 +3,7 @@ import '../components/style.css'
 import '../App.css'
 import res from '../components/image/restaurant.png';
 
+//Restaurant screen for demonstration of what the feature could look like
 const Restaurant = () => {
 
   return (

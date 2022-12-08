@@ -1,7 +1,7 @@
 :root {
     --border-color: white;
   }
-  
+  /*Used for events and news widgets and feedback list*/
   .feedback-list {
     margin: 0;
     list-style: none;
