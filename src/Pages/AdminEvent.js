@@ -45,12 +45,14 @@ const AdminEvent = () => {
 
     const [list=events, setList] = React.useState()
 
+    // for deleting from the list
     function removeList(id) {
       deleteEvent(id)
       const newList = list.filter((l) => l.id !== id)
       setList(newList);
     }
 
+    // admin rights check
     if(adminCheck===false){
         return(
           <Intro>
@@ -113,6 +115,7 @@ const AdminEvent = () => {
     };
 };
 
+// for adding events to database
 const addEvent = async (credentials) => {
   const subject = credentials.subject
   const eventTxt = credentials.eventTxt
@@ -211,6 +214,7 @@ const useLaunches = () => {
   return events;
 };
 
+// for deleting events from the database
 const deleteEvent = async (id) => {
   var token = localStorage.getItem("token");
   const myObj = JSON.parse(token);

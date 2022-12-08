@@ -15,12 +15,14 @@ const AdminFeedback = () => {
 
   const [list=feedbacks, setList] = React.useState()
 
+  // for deleting items from the list
   function removeList(id) {
     deleteFeedback(id)
     const newList = list.filter((l) => l.id !== id)
     setList(newList);
   }
 
+  // admin check
   if(adminCheck===false){
     return(
       <Intro>
@@ -59,6 +61,7 @@ const AdminFeedback = () => {
   }
 }
 
+// for fetching feedbacks from the database
 const useLaunches = () => {
   const [feedbacks, setFeedbacks] = React.useState([]);
 
@@ -117,6 +120,7 @@ React.useEffect(() => {
 return feedbacks;
 };
 
+// for deleting feedbacks from the database
 const deleteFeedback = async (id) => {
 var token = localStorage.getItem("token");
 const myObj = JSON.parse(token);

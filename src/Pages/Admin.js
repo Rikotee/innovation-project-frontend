@@ -10,8 +10,10 @@ const Intro = styled.div`
 
 const Admin = () => {
 
+  // check if user have admin rights
   const adminCheck = useLaunchesAdmin()
 
+  // if user do not have admin rights only "Not Authorized" text will be shown
   if(adminCheck===false){
     return(
       <Intro>
