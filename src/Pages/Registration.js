@@ -85,7 +85,7 @@ const Registration = () => {
     body: JSON.stringify({ query: 
       `
       mutation Mutation {
-        createUser(username: "fakename", password: "fakepass") {
+        createUser(username: "fakename@test.com", password: "fakepass") {
           _id
           username
         }
