@@ -17,7 +17,7 @@ and [Digitransit](https://digitransit.fi/) Routing API for HSL widget
 
 * cd to cloned repository.
 
-#### If you want use email notifications, you will need [EmailJS](https://www.emailjs.com/) account
+#### If you want use email notifications, you will need [EmailJS](https://www.emailjs.com/) account (Not mandatory for other use of the application)
 
 * create new .env file to root directory and :
 ```
