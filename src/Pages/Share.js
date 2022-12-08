@@ -3,6 +3,7 @@ import '../components/style.css'
 import '../App.css'
 import qr from '../components/image/qr.png';
 
+// this page shows qr code image link to applications webpage
 const Share = () => {
 
     return(

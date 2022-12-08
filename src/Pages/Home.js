@@ -102,6 +102,7 @@ const Home = () => {
   );
 };
 
+// for fetching events from the database
 const useLaunchesEvents = () => {
   const [events, setEvents] = React.useState([]);
 
@@ -133,6 +134,7 @@ const useLaunchesEvents = () => {
   return events;
 };
 
+// for fetching news from the database
 const useLaunchesNews = () => {
   const [news, setNews] = React.useState([]);
 

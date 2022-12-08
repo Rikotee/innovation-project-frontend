@@ -74,6 +74,7 @@ const secondsToTime = (s) => {
   return timeString
 };
 
+// this will find users location
 const getLocationStations = () => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -87,7 +88,7 @@ const showPosition = (position) => {
   return getNearestStationsAndDepertures(position.coords.latitude, position.coords.longitude)
 }
 
-// this will fetch nearest stations in 400m
+// this will fetch nearest stations in 400m from the user
 const getNearestStationsAndDepertures = async (lat, lon) => {
 
   fetch("https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql", {

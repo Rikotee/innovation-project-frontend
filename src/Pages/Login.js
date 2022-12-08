@@ -73,6 +73,7 @@ const Login = ({ setToken }) => {
   )
 }
 
+// for user login
  const loginUser = async (credentials) => {
    const username = credentials.username
    const password = credentials.password

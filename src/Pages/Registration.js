@@ -74,6 +74,7 @@ const Registration = () => {
   )
 };
 
+// used for registering user
  const registerUser = async (credentials) => {
    const username = credentials.username
    const password = credentials.password

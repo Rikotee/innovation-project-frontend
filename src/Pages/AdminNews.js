@@ -44,12 +44,14 @@ const AdminNews = () => {
 
     const [list=news, setList] = React.useState()
 
+    // for deleting items from the list
     function removeList(id) {
       deleteNews(id)
       const newList = list.filter((l) => l.id !== id)
       setList(newList);
     }
 
+    // admin check
     if(adminCheck===false){
         return(
           <Intro>
@@ -106,6 +108,7 @@ const AdminNews = () => {
     };
 };
 
+// for adding news for the database
 const addNews = async (credentials) => {
   const subject = credentials.subject
   const newsTxt = credentials.newsTxt
@@ -172,6 +175,7 @@ const useLaunchesAdmin = () => {
   return news;
 };
 
+// for fetching news from the database
 const useLaunches = () => {
   const [news, setNews] = React.useState([]);
 
@@ -202,6 +206,7 @@ const useLaunches = () => {
   return news;
 };
 
+// for deleting news from the database
 const deleteNews = async (id) => {
   var token = localStorage.getItem("token");
   const myObj = JSON.parse(token);
