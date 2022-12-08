@@ -6,7 +6,8 @@ This is the Web-Frontend of the app MyCampus. The application also contains Back
 
 The application allows to create user and read events, news and give feedback.
 
-MyCampus uses [EmailJS](https://www.emailjs.com/) for email notifications.
+MyCampus uses [EmailJS](https://www.emailjs.com/) for email notifications
+and [Digitransit](https://digitransit.fi/) Routing API for HSL widget
 
 ## Getting started
 
